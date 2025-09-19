@@ -46,9 +46,7 @@ function Footer() {
             <li>
               <Link to="/help" className="text-gray-400 hover:text-[#FACC15] transition-colors duration-300">Help Center</Link>
             </li>
-            <li>
-              <Link to="/faq" className="text-gray-400 hover:text-[#FACC15] transition-colors duration-300">FAQ</Link>
-            </li>
+
             <li>
               <Link to="/terms" className="text-gray-400 hover:text-[#FACC15] transition-colors duration-300">Terms of Service</Link>
             </li>
@@ -95,22 +93,39 @@ function Footer() {
               <BsTwitter size={24} />
             </a>
           </div>
-          <p className="text-sm text-gray-400">Email: support@mkzlearning.com</p>
-          <p className="text-sm text-gray-400">Phone: +1 (800) 123-4567</p>
+
+          <p className="text-sm text-gray-400">
+            Email:{" "}
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=support@mkzlearning.com&su=Support%20Request&body=Hi%20MKZ%20Learning%2C%0A"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#FACC15] hover:underline"
+            >
+              support@mkzlearning.com
+            </a>
+          </p>
+          <p className="text-sm text-gray-400">
+            Phone:{" "}
+            <a
+              href="tel:+18001234567"
+              className="text-[#FACC15] hover:underline"
+              aria-label="Call MKZ Learning support"
+            >
+              +1 (800) 123-4567
+            </a>
+          </p>
+
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="mt-8 pt-8 border-t border-gray-700 flex flex-col sm:flex-row justify-between items-center">
+      <div className="mt-8 pt-8 border-t border-gray-700 text-center">
         <span className="text-sm text-gray-400">
           &copy; {currentYear} MKZ Learning. All rights reserved.
         </span>
-        <div className="mt-4 sm:mt-0 flex space-x-4 text-sm">
-          <Link to="/terms" className="text-gray-400 hover:text-[#FACC15] transition-colors duration-300">Terms</Link>
-          <Link to="/privacy" className="text-gray-400 hover:text-[#FACC15] transition-colors duration-300">Privacy</Link>
-          <Link to="/cookies" className="text-gray-400 hover:text-[#FACC15] transition-colors duration-300">Cookies</Link>
-        </div>
       </div>
+
     </footer>
   );
 }

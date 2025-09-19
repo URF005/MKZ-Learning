@@ -1,7 +1,19 @@
 "use client"
 
 import Cookies from "js-cookie"
-import { FiMenu, FiX, FiHome, FiBookOpen, FiMail, FiInfo, FiUser, FiLogOut, FiSettings } from "react-icons/fi"
+import {
+  FiMenu,
+  FiX,
+  FiHome,
+  FiBookOpen,
+  FiMail,
+  FiInfo,
+  FiUser,
+  FiLogOut,
+  FiSettings,
+  FiDollarSign,
+  FiShield,
+} from "react-icons/fi"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { useState } from "react"
@@ -36,8 +48,10 @@ function HomeLayout({ children }) {
   const navigationItems = [
     { icon: FiHome, label: "Home", path: "/" },
     { icon: FiBookOpen, label: "All Courses", path: "/courses" },
+    { icon: FiDollarSign, label: "Pricing", path: "/pricing" }, // ✅ Added Pricing
     { icon: FiMail, label: "Contact Us", path: "/contact" },
     { icon: FiInfo, label: "About Us", path: "/about" },
+    { icon: FiShield, label: "Privacy Policy", path: "/privacy" }, // ✅ Added Privacy Policy
   ]
 
   return (
@@ -123,7 +137,9 @@ function HomeLayout({ children }) {
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Welcome back,</p>
-                  <p className="font-semibold text-foreground capitalize">{firstName}</p>
+                  <p className="font-semibold text-foreground capitalize">
+                    {firstName}
+                  </p>
                 </div>
               </div>
             </div>
@@ -147,7 +163,10 @@ function HomeLayout({ children }) {
                     e.currentTarget.style.color = ""
                   }}
                 >
-                  <FiSettings className="group-hover:scale-110 transition-transform" size={20} />
+                  <FiSettings
+                    className="group-hover:scale-110 transition-transform"
+                    size={20}
+                  />
                   <span className="font-medium">Admin Dashboard</span>
                 </Link>
               )}
@@ -168,7 +187,10 @@ function HomeLayout({ children }) {
                     e.currentTarget.style.color = ""
                   }}
                 >
-                  <item.icon className="group-hover:scale-110 transition-all" size={20} />
+                  <item.icon
+                    className="group-hover:scale-110 transition-all"
+                    size={20}
+                  />
                   <span className="font-medium">{item.label}</span>
                 </Link>
               ))}
@@ -188,7 +210,10 @@ function HomeLayout({ children }) {
                     e.currentTarget.style.color = ""
                   }}
                 >
-                  <FiUser className="group-hover:scale-110 transition-all" size={20} />
+                  <FiUser
+                    className="group-hover:scale-110 transition-all"
+                    size={20}
+                  />
                   <span className="font-medium">Profile</span>
                 </Link>
               )}
@@ -206,7 +231,8 @@ function HomeLayout({ children }) {
                     onMouseEnter={(e) => {
                       e.target.style.backgroundColor = "#E6B800"
                       e.target.style.transform = "translateY(-1px)"
-                      e.target.style.boxShadow = "0 4px 12px rgba(250, 204, 21, 0.3)"
+                      e.target.style.boxShadow =
+                        "0 4px 12px rgba(250, 204, 21, 0.3)"
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.backgroundColor = "#FACC15"
@@ -220,12 +246,17 @@ function HomeLayout({ children }) {
                 <Link to="/signup" onClick={closeDrawer} className="block">
                   <button
                     className="w-full py-3 px-4 rounded-xl font-semibold transition-all duration-200 border-2"
-                    style={{ borderColor: "#FACC15", color: "#FACC15", backgroundColor: "transparent" }}
+                    style={{
+                      borderColor: "#FACC15",
+                      color: "#FACC15",
+                      backgroundColor: "transparent",
+                    }}
                     onMouseEnter={(e) => {
                       e.target.style.backgroundColor = "#FACC15"
                       e.target.style.color = "black"
                       e.target.style.transform = "translateY(-1px)"
-                      e.target.style.boxShadow = "0 4px 12px rgba(250, 204, 21, 0.3)"
+                      e.target.style.boxShadow =
+                        "0 4px 12px rgba(250, 204, 21, 0.3)"
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.backgroundColor = "transparent"
@@ -262,7 +293,13 @@ function HomeLayout({ children }) {
       </aside>
 
       {/* Main Content */}
-      <main className={`pt-20 transition-all duration-300 ${isDrawerOpen ? "lg:ml-80" : ""}`}>{children}</main>
+      <main
+        className={`pt-20 transition-all duration-300 ${
+          isDrawerOpen ? "lg:ml-80" : ""
+        }`}
+      >
+        {children}
+      </main>
 
       <Footer />
     </div>

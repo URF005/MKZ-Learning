@@ -27,12 +27,11 @@ import Profile from './pages/user/Profile'
 // Newly added footer pages
 import Pricing from './Pages/Pricing'
 import HelpCenter from './Pages/HelpCenter'
-import FAQ from './Pages/FAQ'
+
 import TermsOfService from './Pages/TermsOfService'
 import PrivacyPolicy from './Pages/PrivacyPolicy'
-import Terms from './Pages/Terms'
-import Privacy from './Pages/Privacy'
-import Cookies from './Pages/Cookies'
+
+
 
 function App() {
   const location = useLocation();
@@ -68,18 +67,10 @@ function App() {
         document.title = 'Pricing - Learning Management System';
       } else if (path === '/help') {
         document.title = 'Help Center - Learning Management System';
-      } else if (path === '/faq') {
-        document.title = 'FAQ - Learning Management System';
       } else if (path === '/terms') {
         document.title = 'Terms of Service - Learning Management System';
       } else if (path === '/privacy') {
         document.title = 'Privacy Policy - Learning Management System';
-      } else if (path === '/legal/terms') {
-        document.title = 'Terms - Learning Management System';
-      } else if (path === '/legal/privacy') {
-        document.title = 'Privacy - Learning Management System';
-      } else if (path === '/legal/cookies') {
-        document.title = 'Cookies - Learning Management System';
       }
     };
 
@@ -126,12 +117,12 @@ function App() {
         {/* Footer pages */}
         <Route path='/pricing' element={<Pricing />} />
         <Route path='/help' element={<HelpCenter />} />
-        <Route path='/faq' element={<FAQ />} />
+
         <Route path='/terms' element={<TermsOfService />} />
         <Route path='/privacy' element={<PrivacyPolicy />} />
-        <Route path='/terms' element={<Terms />} />
-        <Route path='/privacy' element={<Privacy />} />
-        <Route path='/cookies' element={<Cookies />} />
+
+
+
       </Routes>
     </>
   )
