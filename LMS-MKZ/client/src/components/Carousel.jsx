@@ -35,12 +35,7 @@ function Carousel() {
 
     return (
         <div className="relative">
-            <button
-                onClick={handlePrevClick}
-                className="btn btn-circle absolute z-30 flex justify-center items-center lg:left-5 left-1 top-1/2"
-            >
-                ❮
-            </button>
+
 
             <div
                 className={`transition-opacity duration-500 ${fade ? "opacity-100" : "opacity-0"

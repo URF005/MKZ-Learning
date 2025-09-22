@@ -48,23 +48,20 @@ function HomeLayout({ children }) {
   const navigationItems = [
     { icon: FiHome, label: "Home", path: "/" },
     { icon: FiBookOpen, label: "All Courses", path: "/courses" },
-    { icon: FiDollarSign, label: "Pricing", path: "/pricing" }, // ✅ Added Pricing
+    { icon: FiDollarSign, label: "Pricing", path: "/pricing" },
     { icon: FiMail, label: "Contact Us", path: "/contact" },
     { icon: FiInfo, label: "About Us", path: "/about" },
-    { icon: FiShield, label: "Privacy Policy", path: "/privacy" }, // ✅ Added Privacy Policy
+    { icon: FiShield, label: "Privacy Policy", path: "/privacy" },
   ]
 
   return (
     <div className="relative min-h-screen bg-background">
-      {/* Header with Menu Button */}
+      {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md">
         <div className="flex items-center justify-between p-4">
           <button
             onClick={toggleDrawer}
             className="p-2 rounded-xl bg-background shadow-sm transition-all duration-200"
-            style={{
-              ":hover": { backgroundColor: "#FACC15", color: "black" },
-            }}
             onMouseEnter={(e) => {
               e.target.style.backgroundColor = "#FACC15"
               e.target.style.color = "black"
@@ -77,8 +74,7 @@ function HomeLayout({ children }) {
           >
             {isDrawerOpen ? <FiX size={24} /> : <FiMenu size={24} />}
           </button>
-          {/* Right side actions */}
-          <div className="w-10" /> {/* Spacer for balance */}
+          <div className="w-10" /> {/* Spacer */}
           <div className="font-bold text-xl" style={{ color: "#FACC15" }}>
             MKZ Learning
           </div>
@@ -93,13 +89,10 @@ function HomeLayout({ children }) {
         />
       )}
 
-      {/* Modern Drawer */}
+      {/* Drawer */}
       <aside
-        className={`
-                fixed top-0 left-0 h-full w-80 bg-card/95 backdrop-blur-xl z-50
-                transform transition-transform duration-300 ease-out shadow-2xl
-                ${isDrawerOpen ? "translate-x-0" : "-translate-x-full"}
-            `}
+        className={`fixed top-0 left-0 h-full w-80 bg-card/95 backdrop-blur-xl z-50 transform transition-transform duration-300 ease-out shadow-2xl ${isDrawerOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         <div className="flex flex-col h-full">
           {/* Drawer Header */}
@@ -123,7 +116,7 @@ function HomeLayout({ children }) {
             </div>
           </div>
 
-          {/* User Profile Section */}
+          {/* User Profile */}
           {isLoggedIn && (
             <div className="p-6">
               <div className="flex items-center gap-4">
@@ -146,9 +139,8 @@ function HomeLayout({ children }) {
           )}
 
           {/* Navigation */}
-          <nav className="flex-1 p-4">
+          <nav className="flex-1 p-4 overflow-y-auto">
             <div className="space-y-2">
-              {/* Admin Dashboard */}
               {isLoggedIn && role === "ADMIN" && (
                 <Link
                   to="/admin/dashboard"
@@ -171,7 +163,6 @@ function HomeLayout({ children }) {
                 </Link>
               )}
 
-              {/* Main Navigation */}
               {navigationItems.map((item) => (
                 <Link
                   key={item.path}
@@ -195,7 +186,6 @@ function HomeLayout({ children }) {
                 </Link>
               ))}
 
-              {/* Profile Link for logged in users */}
               {isLoggedIn && (
                 <Link
                   to="/profile"
@@ -220,8 +210,8 @@ function HomeLayout({ children }) {
             </div>
           </nav>
 
-          {/* Bottom Actions */}
-          <div className="p-4">
+          {/* Bottom Actions - Sticky */}
+          <div className="p-4 mt-auto sticky bottom-0 bg-card/95 backdrop-blur-xl">
             {!isLoggedIn ? (
               <div className="space-y-3">
                 <Link to="/login" onClick={closeDrawer} className="block">
@@ -294,9 +284,8 @@ function HomeLayout({ children }) {
 
       {/* Main Content */}
       <main
-        className={`pt-20 transition-all duration-300 ${
-          isDrawerOpen ? "lg:ml-80" : ""
-        }`}
+        className={`pt-20 transition-all duration-300 ${isDrawerOpen ? "lg:ml-80" : ""
+          }`}
       >
         {children}
       </main>

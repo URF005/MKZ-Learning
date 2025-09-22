@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify';
-
 import axiosInstance from '../../helpers/AxiosInstance'
 
 const initialState = {
@@ -11,9 +10,7 @@ const initialState = {
 
 export const signup = createAsyncThunk("/auth/signup", async (data) => {
     try {
-        toast.loading("Wait! Creating your account", {
-            position: 'top-center'
-        });
+        toast.loading("Wait! Creating your account", { position: 'top-center' });
         const response = await axiosInstance.post('/user/signup', data);
         if (response.status === 201) {
             toast.dismiss();
@@ -30,11 +27,10 @@ export const signup = createAsyncThunk("/auth/signup", async (data) => {
         throw error;
     }
 });
+
 export const login = createAsyncThunk("/auth/login", async (data) => {
     try {
-        toast.loading("Wait! login in your account", {
-            position: 'top-center'
-        });
+        toast.loading("Wait! login in your account", { position: 'top-center' });
         const response = await axiosInstance.post('/user/login', data);
         if (response.status === 200) {
             toast.dismiss();
@@ -51,11 +47,10 @@ export const login = createAsyncThunk("/auth/login", async (data) => {
         throw error;
     }
 });
+
 export const logout = createAsyncThunk("/auth/logout", async () => {
     try {
-        toast.loading("Wait! logout in progress", {
-            position: 'top-center'
-        });
+        toast.loading("Wait! logout in progress", { position: 'top-center' });
         const response = await axiosInstance.get('/user/logout');
         if (response.status === 200) {
             toast.dismiss();
@@ -71,13 +66,12 @@ export const logout = createAsyncThunk("/auth/logout", async () => {
         toast.error(error?.response?.data?.message);
         throw error;
     }
-})
+});
+
 export const forgotPassword = createAsyncThunk("/user/forgotPassword", async (data) => {
     try {
-        toast.loading("Wait! sending request...", {
-            position: 'top-center'
-        });
-        const response = await axiosInstance.post('/user/forgot-password', data)
+        toast.loading("Wait! sending request...", { position: 'top-center' });
+        const response = await axiosInstance.post('/user/forgot-password', data);
         if (response.status === 200) {
             toast.dismiss();
             toast.success(response.data.message);
@@ -92,15 +86,12 @@ export const forgotPassword = createAsyncThunk("/user/forgotPassword", async (da
         toast.error(error?.response?.data?.message);
         throw error;
     }
-})
-export const resetPassword = createAsyncThunk("/user/resetPassword", async (data) => {
+});
+
+export const resetPassword = createAsyncThunk("/user/resetPassword", async ({ resetToken, password }) => {
     try {
-        toast.loading("Wait! resetting password...", {
-            position: 'top-center'
-        });
-        const response = await axiosInstance.post(`/user/reset/${data.resetToken}`, {
-            password: data.password
-        });
+        toast.loading("Wait! resetting password...", { position: 'top-center' });
+        const response = await axiosInstance.post(`/user/reset/${resetToken}`, { password });
         if (response.status === 200) {
             toast.dismiss();
             toast.success(response.data.message);
@@ -115,12 +106,11 @@ export const resetPassword = createAsyncThunk("/user/resetPassword", async (data
         toast.error(error?.response?.data?.message);
         throw error;
     }
-})
+});
+
 export const changePassword = createAsyncThunk("/user/changePassword", async (data) => {
     try {
-        toast.loading("Wait! changing password..", {
-            position: 'top-center'
-        });
+        toast.loading("Wait! changing password..", { position: 'top-center' });
         const response = await axiosInstance.put('/user/change-password', data);
         if (response.status === 200) {
             toast.dismiss();
@@ -136,12 +126,11 @@ export const changePassword = createAsyncThunk("/user/changePassword", async (da
         toast.error(error?.response?.data?.message);
         throw error;
     }
-})
+});
+
 export const editProfile = createAsyncThunk("/user/editProfile", async (data) => {
     try {
-        toast.loading("Wait! update profile", {
-            position: 'top-center'
-        });
+        toast.loading("Wait! update profile", { position: 'top-center' });
         const response = await axiosInstance.put('/user/update', data);
         if (response.status === 200) {
             toast.dismiss();
@@ -157,7 +146,8 @@ export const editProfile = createAsyncThunk("/user/editProfile", async (data) =>
         toast.error(error?.response?.data?.message);
         throw error;
     }
-})
+});
+
 export const getProfile = createAsyncThunk("/user/myprofile", async () => {
     try {
         const response = await axiosInstance.get('/user/myprofile');
@@ -167,7 +157,8 @@ export const getProfile = createAsyncThunk("/user/myprofile", async () => {
         toast.error(error?.response?.data?.message);
         throw error;
     }
-})
+});
+
 export const deleteProfile = createAsyncThunk("/user/deleteProfile", async (data) => {
     try {
         const response = await axiosInstance.delete('/user/delete-profile', data);
@@ -184,8 +175,7 @@ export const deleteProfile = createAsyncThunk("/user/deleteProfile", async (data
         toast.error(error?.response?.data?.message);
         throw error;
     }
-})
-
+});
 
 const authSlice = createSlice({
     name: 'auth',
@@ -196,37 +186,35 @@ const authSlice = createSlice({
             localStorage.setItem("isLoggedIn", true);
             localStorage.setItem("data", JSON.stringify(action?.payload?.userData));
             localStorage.setItem("role", action?.payload?.userData?.role);
-            state.isLoggedIn = true
-            state.data = action?.payload?.userData
-            state.role = action?.payload?.userData?.role
-        })
+            state.isLoggedIn = true;
+            state.data = action?.payload?.userData;
+            state.role = action?.payload?.userData?.role;
+        });
         builder.addCase(signup.fulfilled, (state, action) => {
             localStorage.setItem("isLoggedIn", true);
             localStorage.setItem("data", JSON.stringify(action?.payload?.user));
             localStorage.setItem("role", action?.payload?.user?.role);
-            state.isLoggedIn = true
-            state.data = action?.payload?.user
-            state.role = action?.payload?.user?.role
-        })
+            state.isLoggedIn = true;
+            state.data = action?.payload?.user;
+            state.role = action?.payload?.user?.role;
+        });
         builder.addCase(logout.fulfilled, (state) => {
             localStorage.clear();
             state.isLoggedIn = false;
             state.data = {};
             state.role = "";
-        })
+        });
         builder.addCase(getProfile.fulfilled, (state, action) => {
             localStorage.setItem("data", JSON.stringify(action?.payload?.user));
-            state.data = action?.payload?.user
-        })
+            state.data = action?.payload?.user;
+        });
         builder.addCase(deleteProfile.fulfilled, (state) => {
             localStorage.clear();
             state.isLoggedIn = false;
             state.data = {};
             state.role = "";
-        })
+        });
     }
-})
+});
 
-
-
-export default authSlice.reducer
+export default authSlice.reducer;

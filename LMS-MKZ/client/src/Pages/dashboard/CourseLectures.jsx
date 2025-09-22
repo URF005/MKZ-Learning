@@ -4,8 +4,9 @@ import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Switch from "react-switch";
+import { motion } from "framer-motion";
 
-import Footer from '../../components/Footer'
+import Footer from "../../components/Footer";
 import { deleteLecture, getLectures } from "../../redux/slices/LectureSlice";
 
 function CourseLectures() {
@@ -22,11 +23,13 @@ function CourseLectures() {
             setCurrentVideo(currentVideo + 1);
         }
     };
+
     const toggleAutoPlay = () => {
         const newValue = !autoPlay;
         setAutoPlay(newValue);
         localStorage.setItem("autoPlay", newValue.toString());
     };
+
     async function fetchData() {
         await dispatch(getLectures(state?._id));
     }
@@ -35,25 +38,29 @@ function CourseLectures() {
         const data = { cid, lectureId };
         const res = await dispatch(deleteLecture(data));
         if (res?.payload?.success) {
-            if (lectures) {
-                setCurrentVideo(0)
-            }
+            if (lectures) setCurrentVideo(0);
         }
     }
+
     function handleClick(idx) {
-        setCurrentVideo(idx)
+        setCurrentVideo(idx);
     }
 
     const splitParagraph = (paragraph) => {
-        const sentences = paragraph.split('.');
+        if (!paragraph) return null;
+        const sentences = paragraph.split(".");
         return (
-            <ul className="flex flex-col gap-4">
-                {sentences.map((sentence, index) => (
-                    <li key={index} className="capitalize text-white px-4 list-disc">{sentence}</li>
-                ))}
+            <ul className="flex flex-col gap-3 list-disc pl-6">
+                {sentences.map((sentence, index) =>
+                    sentence.trim() ? (
+                        <li key={index} className="capitalize text-slate-200 leading-relaxed">
+                            {sentence}
+                        </li>
+                    ) : null
+                )}
             </ul>
         );
-    }
+    };
 
     useEffect(() => {
         if (!state) {
@@ -69,112 +76,153 @@ function CourseLectures() {
         }
     }, [lectures, currentVideo]);
 
-
     return (
-        <div className="relative">
+        <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800">
             {lectures?.length > 0 ? (
-                <>
-                    <div className="w-full flex lg:flex-row md:flex-row flex-col gap-4 lg:gap-0 md:gap-0 pb-16 ">
-                        <div className="lg:w-[70%] md:w-[60%] md:h-screen lg:h-screen h-[50vh] overflow-y-scroll ">
-                            <div className="w-full h-16 flex justify-between items-center lg:px-12 px-6 bg-white lg:sticky md:sticky top-0 z-10 mb-4">
-                                <div className="flex gap-8 items-center  h-full">
-                                    <FaArrowLeft
-                                        className="text-black text-2xl cursor-pointer hover:text-slate-600"
-                                        onClick={() => navigate(-1)}
-                                    />
-                                    <p className="text-black lg:text-xl">
-                                        Now playing -{" "}
-                                        <span className=" font-semibold capitalize ">
-                                            {lectures[currentVideo]?.title}
-                                        </span>
-                                    </p>
-                                </div>
-                                <div >
-                                    <label className="flex items-center h-full gap-4">
-                                        <span className="font-semibold text-black text-xl lg:block md:block hidden">Autoplay</span>
-                                        <Switch
-                                            onChange={toggleAutoPlay}
-                                            checked={autoPlay}
-                                            height={24}
-                                            width={48}
-                                            uncheckedIcon={false}
-                                            checkedIcon={false}
-                                            onColor="#a7a51b"
-                                        />
-                                    </label>
-                                </div>
+                <div className="flex flex-col lg:flex-row gap-6 px-4 md:px-8 lg:px-20 py-6">
+                    {/* Left - Video Player + Description */}
+                    <div className="lg:w-[70%] md:w-[60%] w-full flex flex-col bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl overflow-hidden">
+                        {/* Header */}
+                        <div className="flex justify-between items-center px-4 md:px-8 py-4 bg-black/30 border-b border-white/10 sticky top-0 z-10">
+                            <div className="flex gap-4 items-center">
+                                <FaArrowLeft
+                                    className="text-white text-xl cursor-pointer hover:text-yellow-400 transition"
+                                    onClick={() => navigate(-1)}
+                                />
+                                <p className="text-slate-200 text-sm md:text-lg">
+                                    Now Playing:{" "}
+                                    <span className="font-semibold text-yellow-400 capitalize">
+                                        {lectures[currentVideo]?.title}
+                                    </span>
+                                </p>
                             </div>
-                            <div className="h-full lg:overflow-y-scroll md:overflow-y-scroll px-4">
-                                <div className="lg:px-6 lg:mb-8 mb-4">
-                                    {lectures.length > 0 && currentVideo !== undefined && (
-                                        <video key={lectures[currentVideo]?.lecture?.secure_url} controls autoPlay={autoPlay} controlsList="nodownload" disablePictureInPicture onEnded={handleVideoEnded} className="w-full h-auto border-2 border-slate-500 rounded-md outline-none focus:outline-none">
-                                            <source src={lectures[currentVideo]?.lecture?.secure_url} type="video/mp4" />
-                                        </video>
-                                    )}
-                                </div>
-                                <div className="flex flex-col gap-4 p-8">
-                                    <h1 className="text-white font-bold text-3xl">Overview :</h1>
-                                    {splitParagraph(lectures[currentVideo]?.description)}
-                                </div>
-                            </div>
+                            <label className="flex items-center gap-3">
+                                <span className="hidden md:block font-semibold text-slate-200">
+                                    Autoplay
+                                </span>
+                                <Switch
+                                    onChange={toggleAutoPlay}
+                                    checked={autoPlay}
+                                    height={20}
+                                    width={44}
+                                    uncheckedIcon={false}
+                                    checkedIcon={false}
+                                    onColor="#facc15"
+                                />
+                            </label>
                         </div>
-                        <div className="lg:w-[30%] md:w-[40%] lg:h-screen md:h-screen h-[50vh] overflow-y-scroll">
-                            <div className="flex flex-col gap-4 z-10 lg:sticky md:sticky top-0">
-                                <h1 className="w-full text-center font-bold text-black capitalize bg-white h-16 flex items-center justify-center lg:text-2xl md:text-xl text-xl">
-                                    {state?.title}
-                                </h1>
-                                {role === "ADMIN" && (
-                                    <button onClick={() => navigate(`/course/${state?.title}/${state?._id}/lectures/addlecture`, { state: state })} className="btn btn-neutral normal-case w-full rounded">
-                                        Add lecture
-                                    </button>
-                                )}
-                            </div>
-                            <div className="py-4 h-full lg:overflow-y-scroll md:overflow-y-scroll px-4">
-                                <ul className="menu gap-8">
-                                    {lectures &&
-                                        lectures.map((lecture, idx) => {
-                                            return (
-                                                <li key={lecture._id}>
-                                                    <div className="flex justify-between items-center">
-                                                        <span
-                                                            className="text-white text-xl font-semibold capitalize"
-                                                            onClick={() => handleClick(idx)}
-                                                        >
-                                                            {lecture?.title}
-                                                        </span>
-                                                        {role === "ADMIN" && (
-                                                            <div className="flex gap-4">
-                                                                <button className="text-xl text-blue-500 transform transition-transform hover:scale-110 hover:text-blue-700"
-                                                                    onClick={() => navigate(`/course/${state?.title}/${state?._id}/lectures/editlecture`, { state: lectures[idx] })}>
-                                                                    <FiEdit />
-                                                                </button>
-                                                                <button
-                                                                    className="text-xl text-red-500 hover:text-red-700 transform transition-transform hover:scale-110"
-                                                                    onClick={() =>
-                                                                        deleteHandle(state?._id, lecture?._id)
-                                                                    }
-                                                                >
-                                                                    <FiTrash2 />
-                                                                </button>
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                </li>
-                                            );
-                                        })}
-                                </ul>
-                            </div>
+
+                        {/* Video */}
+                        <div className="w-full">
+                            {lectures.length > 0 && (
+                                <motion.video
+                                    key={lectures[currentVideo]?.lecture?.secure_url}
+                                    controls
+                                    autoPlay={autoPlay}
+                                    controlsList="nodownload"
+                                    disablePictureInPicture
+                                    onEnded={handleVideoEnded}
+                                    className="w-full h-72 md:h-[28rem] object-cover rounded-b-2xl"
+                                    whileHover={{ scale: 1.01 }}
+                                >
+                                    <source
+                                        src={lectures[currentVideo]?.lecture?.secure_url}
+                                        type="video/mp4"
+                                    />
+                                </motion.video>
+                            )}
+                        </div>
+
+                        {/* Description */}
+                        <div className="p-6 md:p-8 flex flex-col gap-4">
+                            <h2 className="text-yellow-400 font-bold text-xl md:text-2xl">
+                                Overview
+                            </h2>
+                            {splitParagraph(lectures[currentVideo]?.description)}
                         </div>
                     </div>
-                </>
+
+                    {/* Right - Lecture List */}
+                    <div className="lg:w-[30%] md:w-[40%] w-full flex flex-col bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl">
+                        <div className="sticky top-0 z-10 bg-black/30 border-b border-white/10 flex flex-col gap-4">
+                            <h1 className="text-center font-bold text-yellow-400 py-4 text-lg md:text-xl capitalize">
+                                {state?.title}
+                            </h1>
+                            {role === "ADMIN" && (
+                                <button
+                                    onClick={() =>
+                                        navigate(`/course/${state?.title}/${state?._id}/lectures/addlecture`, {
+                                            state: state,
+                                        })
+                                    }
+                                    className="mx-4 mb-4 py-2 rounded-lg bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-semibold shadow-lg hover:shadow-yellow-500/30 transition-all"
+                                >
+                                    + Add Lecture
+                                </button>
+                            )}
+                        </div>
+
+                        <div className="flex-1 overflow-y-auto px-4 py-6">
+                            <ul className="flex flex-col gap-4">
+                                {lectures &&
+                                    lectures.map((lecture, idx) => (
+                                        <li
+                                            key={lecture._id}
+                                            className={`p-3 rounded-lg cursor-pointer flex justify-between items-center transition ${currentVideo === idx
+                                                ? "bg-yellow-500/20 border border-yellow-400"
+                                                : "hover:bg-white/10"
+                                                }`}
+                                        >
+                                            <span
+                                                className="text-slate-200 font-semibold capitalize"
+                                                onClick={() => handleClick(idx)}
+                                            >
+                                                {lecture?.title}
+                                            </span>
+                                            {role === "ADMIN" && (
+                                                <div className="flex gap-3">
+                                                    <button
+                                                        className="text-blue-400 hover:text-blue-600 transition transform hover:scale-110"
+                                                        onClick={() =>
+                                                            navigate(
+                                                                `/course/${state?.title}/${state?._id}/lectures/editlecture`,
+                                                                { state: lectures[idx] }
+                                                            )
+                                                        }
+                                                    >
+                                                        <FiEdit />
+                                                    </button>
+                                                    <button
+                                                        className="text-red-400 hover:text-red-600 transition transform hover:scale-110"
+                                                        onClick={() =>
+                                                            deleteHandle(state?._id, lecture?._id)
+                                                        }
+                                                    >
+                                                        <FiTrash2 />
+                                                    </button>
+                                                </div>
+                                            )}
+                                        </li>
+                                    ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             ) : (
-                <div className="flex flex-col h-[90vh] gap-5 items-center justify-center">
-                    <p className="font-semibold text-2xl tracking-wider capitalize text-center">
-                        {state?.title}
+                <div className="flex flex-col h-[90vh] gap-5 items-center justify-center text-center">
+                    <p className="font-semibold text-2xl text-slate-200">
+                        No lectures available for <span className="text-yellow-400">{state?.title}</span>
                     </p>
                     {role === "ADMIN" && (
-                        <button onClick={() => navigate(`/course/${state?.title}/${state?._id}/lectures/addlecture`, { state: state })} className="btn btn-neutral normal-case rounded">
-                            Add lecture
+                        <button
+                            onClick={() =>
+                                navigate(`/course/${state?.title}/${state?._id}/lectures/addlecture`, {
+                                    state: state,
+                                })
+                            }
+                            className="py-3 px-6 rounded-lg bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-semibold shadow-lg hover:shadow-yellow-500/30 transition-all"
+                        >
+                            + Add Lecture
                         </button>
                     )}
                 </div>
