@@ -6,7 +6,7 @@ import { Send } from "lucide-react"; // run: npm install lucide-react
 import option2 from "../assets/Json/option2.json";
 import Particle from "../components/Particle";
 import axiosInstance from "../helpers/AxiosInstance";
-import HomeLayout from "../layouts/HomeLayout";
+import HomeLayout from "../Layouts/HomeLayout";
 
 function Contact() {
   const [userInput, setUserInput] = useState({

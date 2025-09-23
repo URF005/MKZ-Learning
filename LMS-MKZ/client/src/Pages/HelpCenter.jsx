@@ -1,4 +1,4 @@
-import HomeLayout from "../layouts/HomeLayout";
+import HomeLayout from "../Layouts/HomeLayout";
 import Particle from "../components/Particle";
 import option1 from "../assets/Json/option1.json";
 

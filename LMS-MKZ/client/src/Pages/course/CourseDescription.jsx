@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
-import HomeLayout from "../../layouts/HomeLayout";
+import HomeLayout from "../../Layouts/HomeLayout";
 
 function CourseDescription() {
     const { state } = useLocation();

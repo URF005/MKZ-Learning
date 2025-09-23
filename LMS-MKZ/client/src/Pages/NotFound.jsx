@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 
 function NotFound() {
   useEffect(() => {
-    document.title = 'Page Not Found - MKZ Learning Management System';
+    document.title = 'Page Not Found - MZK Learning Management System';
   }, []);
 
   return (
@@ -26,7 +26,7 @@ function NotFound() {
             Page Not Found
           </p>
           <p className="text-sm sm:text-base text-gray-300 mb-10 max-w-md mx-auto leading-relaxed">
-            Looks like you've hit a dead end. Let's guide you back to the MKZ Learning journey!
+            Looks like you've hit a dead end. Let's guide you back to the MZK Learning journey!
           </p>
           <img
             src={errorImage}

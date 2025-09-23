@@ -17,6 +17,7 @@ import {
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import logo from "../assets/Images/Image from iOS.jpg"
 
 import Footer from "../components/Footer"
 import { logout } from "../redux/slices/AuthSlice"
@@ -75,8 +76,15 @@ function HomeLayout({ children }) {
             {isDrawerOpen ? <FiX size={24} /> : <FiMenu size={24} />}
           </button>
           <div className="w-10" /> {/* Spacer */}
-          <div className="font-bold text-xl" style={{ color: "#FACC15" }}>
-            MKZ Learning
+          {/* Logo Section */}
+          <div className="flex items-center justify-center">
+            <Link to="/" onClick={closeDrawer}>
+              <img
+                src={logo}
+                alt="MZK Learning Logo"
+                className="h-10 w-auto sm:h-12 lg:h-14 object-contain rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
+              />
+            </Link>
           </div>
         </div>
       </header>

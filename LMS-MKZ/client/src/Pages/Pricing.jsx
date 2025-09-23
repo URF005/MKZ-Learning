@@ -1,4 +1,4 @@
-import HomeLayout from "../layouts/HomeLayout"
+import HomeLayout from "../Layouts/HomeLayout"
 import Particle from "../components/Particle"
 import option2 from "../assets/Json/option2.json"
 import {

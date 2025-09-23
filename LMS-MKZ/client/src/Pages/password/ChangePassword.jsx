@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { LockKeyhole, CheckCircle } from "lucide-react";
 
-import HomeLayout from "../../layouts/HomeLayout";
+import HomeLayout from "../../Layouts/HomeLayout";
 import { changePassword, logout } from "../../redux/slices/AuthSlice";
 
 function ChangePassword() {

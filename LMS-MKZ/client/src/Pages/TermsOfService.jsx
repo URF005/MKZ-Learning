@@ -1,4 +1,4 @@
-import HomeLayout from "../layouts/HomeLayout";
+import HomeLayout from "../Layouts/HomeLayout";
 import Particle from "../components/Particle";
 import option1 from "../assets/Json/option1.json";
 
@@ -15,7 +15,7 @@ function TermsOfService() {
           Terms of Service
         </h1>
         <p className="text-base md:text-lg text-gray-300 max-w-3xl text-center mb-12 leading-relaxed">
-          These Terms of Service (“Terms”) govern your use of MKZ Learning.
+          These Terms of Service (“Terms”) govern your use of MZK Learning.
           Please review them carefully as they outline your rights and
           responsibilities when accessing our platform.
         </p>
@@ -28,7 +28,7 @@ function TermsOfService() {
               1. Acceptance of Terms
             </h2>
             <p>
-              By using MKZ Learning, you acknowledge that you have read,
+              By using MZK Learning, you acknowledge that you have read,
               understood, and agree to be bound by these Terms. If you do not
               agree, you may not use our services.
             </p>
@@ -76,7 +76,7 @@ function TermsOfService() {
               4. Payments & Refunds
             </h2>
             <p>
-              All transactions are processed securely. MKZ Learning provides a{" "}
+              All transactions are processed securely. MZK Learning provides a{" "}
               <span className="font-semibold text-[#FACC15]">
                 7-day refund policy
               </span>{" "}
@@ -107,7 +107,7 @@ function TermsOfService() {
               6. Prohibited Use
             </h2>
             <p>
-              You agree not to misuse MKZ Learning for illegal, fraudulent, or
+              You agree not to misuse MZK Learning for illegal, fraudulent, or
               harmful purposes. Any such activity may lead to immediate account
               termination.
             </p>
@@ -121,7 +121,7 @@ function TermsOfService() {
               7. Limitation of Liability
             </h2>
             <p>
-              MKZ Learning is provided “as is” without warranties of any kind.
+              MZK Learning is provided “as is” without warranties of any kind.
               We are not liable for indirect, incidental, or consequential
               damages related to your use of our services.
             </p>
@@ -135,7 +135,7 @@ function TermsOfService() {
               8. Updates to Terms
             </h2>
             <p>
-              We may update these Terms from time to time. Continued use of MKZ
+              We may update these Terms from time to time. Continued use of MZK
               Learning after changes constitutes acceptance of the new Terms.
             </p>
           </div>

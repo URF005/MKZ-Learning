@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import HomeImage from "../assets/Images/homeImage.png"
 import option1 from '../assets/Json/option1.json'
 import Particle from "../components/Particle"
-import HomeLayout from "../layouts/HomeLayout"
+import HomeLayout from "../Layouts/HomeLayout"
 
 const testimonials = [
     { text: "This platform completely changed my career! Highly recommend.", name: "Ayesha, Web Developer" },

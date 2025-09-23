@@ -1,4 +1,4 @@
-import HomeLayout from "../layouts/HomeLayout";
+import HomeLayout from "../Layouts/HomeLayout";
 import Particle from "../components/Particle";
 import option1 from "../assets/Json/option1.json";
 
@@ -15,7 +15,7 @@ function PrivacyPolicy() {
           Privacy Policy
         </h1>
         <p className="text-base md:text-lg text-gray-300 max-w-3xl text-center mb-12 leading-relaxed">
-          At MKZ Learning, your trust is important to us. This Privacy Policy
+          At MZK Learning, your trust is important to us. This Privacy Policy
           outlines how we collect, use, and protect your data when you use our
           platform.
         </p>
@@ -79,7 +79,7 @@ function PrivacyPolicy() {
             <p className="text-white leading-relaxed">
               All course materials, including{" "}
               <span className="font-semibold">videos, notes, and resources</span>{" "}
-              provided by MKZ Learning, are protected under copyright.{" "}
+              provided by MZK Learning, are protected under copyright.{" "}
               <span className="font-bold">
                 Sharing, downloading, or distributing our videos without
                 permission is strictly prohibited

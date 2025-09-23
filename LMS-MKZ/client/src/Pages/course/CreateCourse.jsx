@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 
-import HomeLayout from "../../layouts/HomeLayout";
+import HomeLayout from "../../Layouts/HomeLayout";
 import { createCourse } from "../../redux/slices/CourseSlice";
 
 function CreateCourse() {
