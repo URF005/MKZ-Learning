@@ -15,7 +15,7 @@ function HelpCenter() {
           Help Center
         </h1>
         <p className="text-base md:text-lg text-gray-200 max-w-2xl text-center mb-12 leading-relaxed">
-          Welcome to the MKZ Learning Help Center! Find quick answers, detailed
+          Welcome to the MZK Learning Help Center! Find quick answers, detailed
           guides, and expert tips to make the most out of your online learning
           experience.
         </p>
@@ -106,7 +106,7 @@ function HelpCenter() {
                   Q: Can I get a refund if I don’t like a course?
                 </p>
                 <p className="text-gray-300">
-                  A: Yes, MKZ Learning offers a 7-day refund policy for eligible
+                  A: Yes, MZK Learning offers a 7-day refund policy for eligible
                   courses.
                 </p>
               </div>

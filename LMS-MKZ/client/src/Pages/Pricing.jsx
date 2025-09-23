@@ -109,7 +109,7 @@ function Pricing() {
             Choose Your Learning Path
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-2xl sm:max-w-3xl text-center mb-12">
-            Unlock your potential with MKZ Learning. Choose the perfect plan for
+            Unlock your potential with MZK Learning. Choose the perfect plan for
             your educational journey and start transforming your career today.
           </p>
         </div>
