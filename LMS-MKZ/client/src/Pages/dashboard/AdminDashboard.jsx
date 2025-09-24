@@ -187,14 +187,13 @@ function AdminDashboard() {
 
         {/* Table */}
         <div className="overflow-x-auto px-4 md:px-8 lg:px-16">
-          <table className="w-full text-sm text-left border-collapse rounded-xl overflow-hidden shadow-xl min-w-[700px]">
+          <table className="w-full text-sm text-left border-collapse rounded-xl overflow-hidden shadow-xl min-w-[600px]">
             <thead className="bg-white/10 text-white uppercase text-xs md:text-sm">
               <tr>
                 <th className="px-3 md:px-4 py-2 md:py-3">S No.</th>
                 <th className="px-3 md:px-4 py-2 md:py-3">Course Title</th>
                 <th className="px-3 md:px-4 py-2 md:py-3">Category</th>
                 <th className="px-3 md:px-4 py-2 md:py-3">Instructor</th>
-                <th className="px-3 md:px-4 py-2 md:py-3">Lectures</th>
                 <th className="px-3 md:px-4 py-2 md:py-3 text-center">Actions</th>
               </tr>
             </thead>
@@ -217,9 +216,6 @@ function AdminDashboard() {
                   </td>
                   <td className="px-3 md:px-4 py-2 md:py-3">{course?.category}</td>
                   <td className="px-3 md:px-4 py-2 md:py-3">{course?.createdBy}</td>
-                  <td className="px-3 md:px-4 py-2 md:py-3">
-                    {course?.numberOfLectures}
-                  </td>
                   <td className="px-3 md:px-4 py-2 md:py-3 flex items-center justify-center gap-4">
                     <button
                       onClick={() =>
