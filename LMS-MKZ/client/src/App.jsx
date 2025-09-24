@@ -38,44 +38,49 @@ function App() {
 
   useEffect(() => {
     const setTitle = () => {
+      const baseTitle = "MZK Digital";
       const path = location.pathname;
-      if (path === '/') {
-        document.title = 'Learning Management System';
-      } else if (path === '/about') {
-        document.title = 'About - Learning Management System';
-      } else if (path === '/contact') {
-        document.title = 'Contact - Learning Management System';
-      } else if (path === '/signup') {
-        document.title = 'Sign Up - Learning Management System';
-      } else if (path === '/login') {
-        document.title = 'Log In - Learning Management System';
-      } else if (path === '/courses') {
-        document.title = 'All Courses - Learning Management System';
-      } else if (path === '/course/description') {
-        document.title = 'Course Description - Learning Management System';
-      } else if (path === '/course/create') {
-        document.title = 'Create Course - Learning Management System';
-      } else if (path === '/admin/dashboard') {
-        document.title = 'Admin Dashboard - Learning Management System';
-      } else if (path === '/profile') {
-        document.title = 'Profile - Learning Management System';
-      } else if (path === '/profile/changePassword') {
-        document.title = 'Change Password - Learning Management System';
+
+      if (path === "/") {
+        document.title = `${baseTitle} | Online Learning & Courses Platform`;
+      } else if (path === "/about") {
+        document.title = `About - ${baseTitle}`;
+      } else if (path === "/contact") {
+        document.title = `Contact - ${baseTitle}`;
+      } else if (path === "/signup") {
+        document.title = `Sign Up - ${baseTitle}`;
+      } else if (path === "/login") {
+        document.title = `Log In - ${baseTitle}`;
+      } else if (path === "/courses") {
+        document.title = `All Courses - ${baseTitle}`;
+      } else if (path === "/course/description") {
+        document.title = `Course Description - ${baseTitle}`;
+      } else if (path === "/course/create") {
+        document.title = `Create Course - ${baseTitle}`;
+      } else if (path === "/admin/dashboard") {
+        document.title = `Admin Dashboard - ${baseTitle}`;
+      } else if (path === "/profile") {
+        document.title = `Profile - ${baseTitle}`;
+      } else if (path === "/profile/changePassword") {
+        document.title = `Change Password - ${baseTitle}`;
       }
       // Footer pages
-      else if (path === '/pricing') {
-        document.title = 'Pricing - Learning Management System';
-      } else if (path === '/help') {
-        document.title = 'Help Center - Learning Management System';
-      } else if (path === '/terms') {
-        document.title = 'Terms of Service - Learning Management System';
-      } else if (path === '/privacy') {
-        document.title = 'Privacy Policy - Learning Management System';
+      else if (path === "/pricing") {
+        document.title = `Pricing - ${baseTitle}`;
+      } else if (path === "/help") {
+        document.title = `Help Center - ${baseTitle}`;
+      } else if (path === "/terms") {
+        document.title = `Terms of Service - ${baseTitle}`;
+      } else if (path === "/privacy") {
+        document.title = `Privacy Policy - ${baseTitle}`;
+      } else {
+        document.title = baseTitle; // fallback
       }
     };
 
     setTitle();
   }, [location.pathname]);
+
 
   return (
     <>

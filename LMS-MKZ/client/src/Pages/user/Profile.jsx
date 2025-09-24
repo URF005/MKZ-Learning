@@ -77,7 +77,7 @@ function Profile() {
 
   return (
     <HomeLayout>
-      <div className="flex justify-center items-center lg:h-screen mb-10">
+      <div className="flex justify-center items-center lg:h-screen mb-10 font-mulish">
         <form
           onSubmit={onFormSubmit}
           className="
@@ -94,7 +94,7 @@ function Profile() {
               <img
                 src={data.previewImage || "/placeholder.svg"}
                 alt="profile photo"
-                className="rounded-full w-32 h-32 object-cover ring-4 ring-yellow-400/50 shadow-md"
+                className="rounded-full w-32 h-32 object-cover ring-4 ring-[#E4B122]/50 shadow-md"
               />
               <input
                 type="file"
@@ -107,7 +107,7 @@ function Profile() {
                 htmlFor="imageUpload"
                 className="
                   absolute bottom-2 right-0 rounded-full 
-                  bg-yellow-400 text-black w-8 h-8 
+                  bg-[#E4B122] text-black w-8 h-8 
                   flex items-center justify-center cursor-pointer
                   shadow-md transition-all duration-200
                   group-hover:scale-110
@@ -128,7 +128,7 @@ function Profile() {
                 Name *
               </label>
               <input
-                className="h-12 w-full font-semibold px-4 py-2 rounded-lg border border-gray-500/40 bg-transparent text-white placeholder-gray-400 focus:ring-2 focus:ring-yellow-400 outline-none capitalize"
+                className="h-12 w-full font-semibold px-4 py-2 rounded-lg border border-gray-500/40 bg-transparent text-white placeholder-gray-400 focus:ring-2 focus:ring-[#E4B122] outline-none capitalize"
                 type="text"
                 name="name"
                 id="name"
@@ -198,18 +198,17 @@ function Profile() {
             <Link to={"/profile/changePassword"} className="w-full lg:w-fit">
               <button
                 type="button"
-                className="w-full lg:w-fit px-6 py-3 rounded-lg font-semibold text-black bg-yellow-400 hover:bg-yellow-300 transition-all shadow-md"
+                className="w-full lg:w-fit px-6 py-3 rounded-lg font-semibold text-black bg-[#E4B122] hover:bg-[#c9971a] transition-all shadow-md"
               >
                 Change Password
               </button>
             </Link>
 
             <button
-              className={`w-full lg:w-fit px-6 py-3 rounded-lg font-semibold transition-all shadow-md ${
-                data.haschanges
+              className={`w-full lg:w-fit px-6 py-3 rounded-lg font-semibold transition-all shadow-md ${data.haschanges
                   ? "bg-green-500 hover:bg-green-400 text-white"
                   : "bg-gray-500/40 text-gray-300 cursor-not-allowed"
-              }`}
+                }`}
               disabled={!data.haschanges}
               type="submit"
             >

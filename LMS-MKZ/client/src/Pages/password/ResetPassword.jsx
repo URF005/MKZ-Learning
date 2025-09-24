@@ -9,133 +9,133 @@ import Footer from "../../components/Footer";
 import { resetPassword } from "../../redux/slices/AuthSlice";
 
 function ForgotPassword() {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { resetToken } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { resetToken } = useParams();
 
-    const [data, setData] = useState({
-        password: "",
-        cnfPassword: "",
-    });
+  const [data, setData] = useState({
+    password: "",
+    cnfPassword: "",
+  });
 
-    function handleUserInput(e) {
-        const { name, value } = e.target;
-        setData({ ...data, [name]: value });
+  function handleUserInput(e) {
+    const { name, value } = e.target;
+    setData({ ...data, [name]: value });
+  }
+
+  async function onSubmit(event) {
+    event.preventDefault();
+    let hasError = false;
+
+    if (!data.password || !data.cnfPassword) {
+      toast.error("All fields are mandatory");
+      hasError = true;
+    } else if (
+      !data.password.match(
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
+      )
+    ) {
+      toast.error(
+        "Password must be 8+ chars with uppercase, lowercase, number & symbol"
+      );
+      hasError = true;
+    } else if (data.password !== data.cnfPassword) {
+      toast.error("Both password fields should be the same");
+      hasError = true;
     }
 
-    async function onSubmit(event) {
-        event.preventDefault();
-        let hasError = false;
+    if (!hasError) {
+      const response = await dispatch(
+        resetPassword({ resetToken, password: data.password })
+      );
 
-        if (!data.password || !data.cnfPassword) {
-            toast.error("All fields are mandatory");
-            hasError = true;
-        } else if (
-            !data.password.match(
-                /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
-            )
-        ) {
-            toast.error(
-                "Password must be 8+ chars with uppercase, lowercase, number & symbol"
-            );
-            hasError = true;
-        } else if (data.password !== data.cnfPassword) {
-            toast.error("Both password fields should be the same");
-            hasError = true;
-        }
-
-        if (!hasError) {
-            const response = await dispatch(
-                resetPassword({ resetToken, password: data.password })
-            );
-
-            if (response.payload?.success) {
-                toast.success("Password reset successful! Please login again.");
-                navigate("/login");
-                setData({ password: "", cnfPassword: "" });
-            }
-        }
+      if (response.payload?.success) {
+        toast.success("Password reset successful! Please login again.");
+        navigate("/login");
+        setData({ password: "", cnfPassword: "" });
+      }
     }
+  }
 
-    useEffect(() => {
-        document.title = "Reset Password - Learning Management System";
-    }, []);
+  useEffect(() => {
+    document.title = "Reset Password - Learning Management System";
+  }, []);
 
-    return (
-        <>
-            <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 px-4">
-                {/* Glow effect */}
-                <div className="absolute top-40 -left-20 w-72 h-72 bg-yellow-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
-                <div className="absolute bottom-20 -right-20 w-72 h-72 bg-purple-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
+  return (
+    <>
+      <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 px-4 font-mulish">
+        {/* Glow effect */}
+        <div className="absolute top-40 -left-20 w-72 h-72 bg-[#E4B122] rounded-full blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-20 -right-20 w-72 h-72 bg-purple-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
 
-                {/* Card */}
-                <motion.form
-                    onSubmit={onSubmit}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="relative z-10 w-full max-w-md bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-8 shadow-2xl space-y-6"
-                >
-                    <div className="flex flex-col items-center gap-2 text-center">
-                        <LockKeyhole className="w-12 h-12 text-yellow-400" />
-                        <h1 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
-                            Reset Your Password
-                        </h1>
-                        <p className="text-sm text-gray-300">
-                            Enter your new password to regain access to your account.
-                        </p>
-                    </div>
+        {/* Card */}
+        <motion.form
+          onSubmit={onSubmit}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="relative z-10 w-full max-w-md bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-8 shadow-2xl space-y-6"
+        >
+          <div className="flex flex-col items-center gap-2 text-center">
+            <LockKeyhole className="w-12 h-12 text-[#E4B122]" />
+            <h1 className="text-3xl font-extrabold bg-gradient-to-r from-[#E4B122] to-[#c9971a] bg-clip-text text-transparent">
+              Reset Your Password
+            </h1>
+            <p className="text-sm text-gray-300">
+              Enter your new password to regain access to your account.
+            </p>
+          </div>
 
-                    <div className="space-y-4">
-                        <div>
-                            <label
-                                className="block mb-1 text-sm font-medium text-gray-300"
-                                htmlFor="password"
-                            >
-                                New Password
-                            </label>
-                            <input
-                                type="password"
-                                name="password"
-                                placeholder="New Password"
-                                className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                                value={data.password}
-                                onChange={handleUserInput}
-                            />
-                        </div>
-
-                        <div>
-                            <label
-                                className="block mb-1 text-sm font-medium text-gray-300"
-                                htmlFor="cnfPassword"
-                            >
-                                Confirm Password
-                            </label>
-                            <input
-                                type="password"
-                                name="cnfPassword"
-                                placeholder="Confirm Password"
-                                className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                                value={data.cnfPassword}
-                                onChange={handleUserInput}
-                            />
-                        </div>
-                    </div>
-
-                    <motion.button
-                        whileHover={{ scale: 1.03 }}
-                        whileTap={{ scale: 0.97 }}
-                        type="submit"
-                        className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-semibold shadow-lg hover:shadow-yellow-500/30 transition-all"
-                    >
-                        <CheckCircle className="w-5 h-5" />
-                        Confirm
-                    </motion.button>
-                </motion.form>
+          <div className="space-y-4">
+            <div>
+              <label
+                className="block mb-1 text-sm font-medium text-gray-300"
+                htmlFor="password"
+              >
+                New Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                placeholder="New Password"
+                className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E4B122]"
+                value={data.password}
+                onChange={handleUserInput}
+              />
             </div>
-            <Footer />
-        </>
-    );
+
+            <div>
+              <label
+                className="block mb-1 text-sm font-medium text-gray-300"
+                htmlFor="cnfPassword"
+              >
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                name="cnfPassword"
+                placeholder="Confirm Password"
+                className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E4B122]"
+                value={data.cnfPassword}
+                onChange={handleUserInput}
+              />
+            </div>
+          </div>
+
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            type="submit"
+            className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-gradient-to-r from-[#E4B122] to-[#c9971a] text-black font-semibold shadow-lg hover:shadow-[#E4B122]/30 transition-all"
+          >
+            <CheckCircle className="w-5 h-5" />
+            Confirm
+          </motion.button>
+        </motion.form>
+      </div>
+      <Footer />
+    </>
+  );
 }
 
 export default ForgotPassword;

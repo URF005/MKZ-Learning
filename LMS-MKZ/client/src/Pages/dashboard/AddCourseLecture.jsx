@@ -65,7 +65,7 @@ function AddCourseLecture() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center py-10 px-4 md:px-12 lg:px-20">
+        <div className="min-h-screen flex items-center justify-center py-10 px-4 md:px-12 lg:px-20 font-mulish">
             <motion.form
                 onSubmit={handleSubmit}
                 initial={{ opacity: 0, y: 30 }}
@@ -76,7 +76,7 @@ function AddCourseLecture() {
                 {/* Left - Video Preview */}
                 <div className="lg:w-1/2 w-full flex flex-col gap-6">
                     <div
-                        className="flex items-center gap-3 cursor-pointer text-slate-300 hover:text-yellow-400 transition"
+                        className="flex items-center gap-3 cursor-pointer text-slate-300 hover:text-[#E4B122] transition"
                         onClick={() => navigate(-1)}
                     >
                         <FaArrowLeft className="text-lg" />
@@ -116,7 +116,7 @@ function AddCourseLecture() {
                             id="lecture"
                             accept="video/mp4"
                             onChange={handleVideo}
-                            className="file-input file-input-bordered file-input-accent w-full text-white"
+                            className="file-input file-input-bordered w-full text-white border border-[#E4B122]/60 focus:ring-2 focus:ring-[#E4B122]"
                         />
                     </div>
 
@@ -134,7 +134,7 @@ function AddCourseLecture() {
                             value={data.title}
                             onChange={handleChange}
                             placeholder="Enter lecture title"
-                            className="input input-bordered w-full bg-white/5 text-white placeholder-gray-400 border border-white/20 focus:ring-2 focus:ring-yellow-400 rounded-lg"
+                            className="input input-bordered w-full bg-white/5 text-white placeholder-gray-400 border border-white/20 focus:ring-2 focus:ring-[#E4B122] rounded-lg"
                         />
                     </div>
 
@@ -151,7 +151,7 @@ function AddCourseLecture() {
                             value={data.description}
                             onChange={handleChange}
                             placeholder="Enter lecture description..."
-                            className="textarea w-full min-h-[120px] bg-white/5 text-white placeholder-gray-400 border border-white/20 focus:ring-2 focus:ring-yellow-400 rounded-lg resize-y"
+                            className="textarea w-full min-h-[120px] bg-white/5 text-white placeholder-gray-400 border border-white/20 focus:ring-2 focus:ring-[#E4B122] rounded-lg resize-y"
                         />
                     </div>
 
@@ -159,7 +159,7 @@ function AddCourseLecture() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.97 }}
                         type="submit"
-                        className="w-full py-3 rounded-lg bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-semibold shadow-lg hover:shadow-yellow-500/30 transition-all"
+                        className="w-full py-3 rounded-lg bg-gradient-to-r from-[#E4B122] to-[#d9a61d] text-black font-semibold shadow-lg hover:shadow-[#E4B122]/40 transition-all"
                     >
                         Add Lecture
                     </motion.button>

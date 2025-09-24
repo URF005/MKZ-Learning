@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
+import { ShieldCheck, BookOpen, Zap } from "lucide-react";
 
 import HomeLayout from "../../Layouts/HomeLayout";
 import {
@@ -42,7 +43,7 @@ function Checkout() {
             subscription_id: razorpay.subscription_id,
             name: "Dutta Pvt. LTD",
             description: "Yearly Subscription",
-            theme: { color: "#facc15" }, // yellow highlight
+            theme: { color: "#E4B122" }, // brand gold
             prefill: { email: userdata.email, name: userdata.name },
             handler: async function (response) {
                 paymentDetails.payment_id = response.razorpay_payment_id;
@@ -78,55 +79,71 @@ function Checkout() {
 
     return (
         <HomeLayout>
-            <div className="flex justify-center items-center min-h-[90vh] px-6">
+            <div className="flex justify-center items-center min-h-[90vh] px-6 font-mulish">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="w-full max-w-lg bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl p-8 flex flex-col items-center gap-6"
+                    className="relative w-full max-w-lg p-10 rounded-3xl shadow-2xl
+            bg-gradient-to-br from-[#1a1a1a]/90 to-[#2b2b2b]/80 
+            backdrop-blur-2xl border border-[#E4B122]/30 flex flex-col items-center gap-8"
                 >
-                    {/* Header */}
-                    <h1 className="text-3xl md:text-4xl font-extrabold text-center bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
-                        Subscription Bundle
-                    </h1>
-                    <p className="text-slate-300 text-center leading-relaxed">
-                        Unlock{" "}
-                        <span className="font-semibold text-yellow-400">
-                            unlimited access
-                        </span>{" "}
-                        to all current and upcoming courses for{" "}
-                        <span className="text-yellow-400 font-bold">1 year</span>.
-                    </p>
+                    {/* Subtle glowing background orb */}
+                    <div className="absolute -top-20 -right-20 w-72 h-72 bg-[#E4B122] rounded-full blur-3xl opacity-10 pointer-events-none"></div>
 
-                    {/* Price */}
-                    <div className="flex flex-col items-center gap-2">
-                        <p className="flex items-end gap-2 text-green-400">
-                            <span className="text-5xl font-extrabold">{price}</span>
-                            <span className="text-lg text-slate-400">/year</span>
-                        </p>
-                        <p className="text-slate-400 text-sm">
-                            100% refund on cancellation within 14 days
+                    {/* Header */}
+                    <div className="text-center space-y-2">
+                        <h1 className="text-4xl font-extrabold bg-gradient-to-r from-[#E4B122] to-[#c9971a] bg-clip-text text-transparent">
+                            Subscription Bundle
+                        </h1>
+                        <p className="text-gray-300 text-sm md:text-base">
+                            Unlock{" "}
+                            <span className="font-semibold text-[#E4B122]">
+                                unlimited access
+                            </span>{" "}
+                            to all courses for{" "}
+                            <span className="font-bold text-[#E4B122]">1 year</span>.
                         </p>
                     </div>
 
+                    {/* Price Card */}
+                    <div className="flex flex-col items-center gap-1">
+                        <p className="flex items-end gap-2 text-green-400">
+                            <span className="text-5xl font-extrabold">{price}</span>
+                            <span className="text-lg text-gray-400">/year</span>
+                        </p>
+                        <span className="text-xs text-gray-400">
+                            14-day money-back guarantee
+                        </span>
+                    </div>
+
                     {/* Perks */}
-                    <ul className="text-slate-200 text-sm md:text-base space-y-2 text-center">
-                        <li>✅ Access to all existing courses</li>
-                        <li>✅ Free access to newly launched courses</li>
-                        <li>✅ 1-year unlimited learning</li>
+                    <ul className="w-full text-gray-200 text-sm md:text-base space-y-3">
+                        <li className="flex items-center gap-3">
+                            <BookOpen className="w-5 h-5 text-[#E4B122]" />
+                            Access to all existing courses
+                        </li>
+                        <li className="flex items-center gap-3">
+                            <Zap className="w-5 h-5 text-[#E4B122]" />
+                            Free access to new launches
+                        </li>
+                        <li className="flex items-center gap-3">
+                            <ShieldCheck className="w-5 h-5 text-[#E4B122]" />
+                            1-year unlimited learning
+                        </li>
                     </ul>
 
-                    {/* Buy button */}
+                    {/* CTA Button */}
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.97 }}
                         onClick={handleSubscription}
-                        className="w-full py-3 rounded-xl bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-semibold shadow-lg hover:shadow-yellow-500/30 transition-all"
+                        className="w-full py-3 rounded-xl bg-[#E4B122] text-black font-semibold shadow-lg hover:bg-[#c9971a] transition-all"
                     >
                         Buy Now
                     </motion.button>
 
-                    <p className="text-xs text-slate-400 text-center">
+                    <p className="text-xs text-gray-400 text-center">
                         Secure payments powered by Razorpay 🔒
                     </p>
                 </motion.div>

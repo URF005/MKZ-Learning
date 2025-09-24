@@ -28,7 +28,7 @@ function Pricing() {
         { text: "1-on-1 instructor support", included: false },
         { text: "Advanced analytics", included: false },
       ],
-      buttonText: "", // ❌ Removed Get Started Free
+      buttonText: "",
       popular: false,
       color: "border-gray-200",
     },
@@ -47,9 +47,9 @@ function Pricing() {
         { text: "Progress tracking", included: true },
         { text: "1-on-1 instructor support", included: false },
       ],
-      buttonText: "", // ❌ Removed Start Pro Plan
+      buttonText: "",
       popular: true,
-      color: "border-[#FACC15]",
+      color: "border-[#E4B122]",
     },
     {
       name: "Enterprise",
@@ -66,7 +66,7 @@ function Pricing() {
         { text: "Priority phone support", included: true },
         { text: "Custom integrations", included: true },
       ],
-      buttonText: "", // ❌ Removed Contact Sales
+      buttonText: "",
       popular: false,
       color: "border-gray-200",
     },
@@ -102,10 +102,10 @@ function Pricing() {
       <Particle option={option2} />
 
       {/* Page Content */}
-      <div className="min-h-screen relative z-10">
+      <div className="min-h-screen relative z-10 font-mulish">
         {/* Hero Section */}
         <div className="flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 pb-16">
-          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-[#FACC15] mb-6 text-center">
+          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-[#E4B122] mb-6 text-center">
             Choose Your Learning Path
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-2xl sm:max-w-3xl text-center mb-12">
@@ -120,8 +120,8 @@ function Pricing() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-16 sm:mb-20">
               {features.map((feature, index) => (
                 <div key={index} className="text-center group">
-                  <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-white/10 backdrop-blur-sm rounded-full shadow-lg mb-4 group-hover:bg-[#FACC15] transition-all duration-300">
-                    <div className="text-[#FACC15] group-hover:text-black transition-colors duration-300">
+                  <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-white/10 backdrop-blur-sm rounded-full shadow-lg mb-4 group-hover:bg-[#E4B122] transition-all duration-300">
+                    <div className="text-[#E4B122] group-hover:text-black transition-colors duration-300">
                       {feature.icon}
                     </div>
                   </div>
@@ -144,13 +144,12 @@ function Pricing() {
               {plans.map((plan, index) => (
                 <div
                   key={index}
-                  className={`relative bg-white/10 backdrop-blur-md rounded-2xl shadow-xl p-6 sm:p-8 ${plan.color} border-2 ${
-                    plan.popular ? "transform scale-105 shadow-2xl" : ""
-                  } hover:shadow-2xl hover:bg-white/20 transition-all duration-300`}
+                  className={`relative bg-white/10 backdrop-blur-md rounded-2xl shadow-xl p-6 sm:p-8 ${plan.color} border-2 ${plan.popular ? "transform scale-105 shadow-2xl" : ""
+                    } hover:shadow-2xl hover:bg-white/20 transition-all duration-300`}
                 >
                   {plan.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <div className="bg-[#FACC15] text-black px-4 sm:px-6 py-2 rounded-full text-sm font-semibold flex items-center">
+                      <div className="bg-[#E4B122] text-black px-4 sm:px-6 py-2 rounded-full text-sm font-semibold flex items-center">
                         <FiStar className="w-4 h-4 mr-1" />
                         Most Popular
                       </div>
@@ -162,7 +161,7 @@ function Pricing() {
                       {plan.name}
                     </h3>
                     <div className="mb-4">
-                      <span className="text-4xl sm:text-5xl font-bold text-[#FACC15]">
+                      <span className="text-4xl sm:text-5xl font-bold text-[#E4B122]">
                         ${plan.price}
                       </span>
                       <span className="text-gray-300 ml-2 text-sm sm:text-base">
@@ -178,11 +177,10 @@ function Pricing() {
                     {plan.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-center">
                         <div
-                          className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center ${
-                            feature.included
+                          className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center ${feature.included
                               ? "bg-green-500/20 text-green-400"
                               : "bg-gray-500/20 text-gray-500"
-                          }`}
+                            }`}
                         >
                           {feature.included ? (
                             <FiCheck className="w-3 h-3" />
@@ -191,17 +189,14 @@ function Pricing() {
                           )}
                         </div>
                         <span
-                          className={`ml-3 text-sm sm:text-base ${
-                            feature.included ? "text-white" : "text-gray-400"
-                          }`}
+                          className={`ml-3 text-sm sm:text-base ${feature.included ? "text-white" : "text-gray-400"
+                            }`}
                         >
                           {feature.text}
                         </span>
                       </div>
                     ))}
                   </div>
-
-                  {/* ❌ Removed all plan action buttons */}
                 </div>
               ))}
             </div>
@@ -211,7 +206,7 @@ function Pricing() {
         {/* FAQ Section */}
         <div className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-[#FACC15] mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-[#E4B122] mb-8 sm:mb-12">
               Frequently Asked Questions
             </h2>
             <div className="space-y-4 sm:space-y-6">
@@ -229,7 +224,7 @@ function Pricing() {
                 {
                   question: "What payment methods do you accept?",
                   answer:
-                    "We accept all major credit cards, PayPal, and bank transfers for enterprise plans.",
+                    "We accept JazzCash, Easypaisa, and Bank Transfers only.",
                 },
                 {
                   question: "Is there a money-back guarantee?",

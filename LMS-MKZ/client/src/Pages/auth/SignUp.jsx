@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 import option3 from "../../assets/Json/option3.json";
 import Particle from "../../components/Particle";
-import HomeLayout from "../../layouts/HomeLayout";
+import HomeLayout from "../../Layouts/HomeLayout";
 import { signup } from "../../redux/slices/AuthSlice";
 
 function SignUp() {
@@ -33,13 +33,11 @@ function SignUp() {
     const uploadedImage = event.target.files[0];
     if (uploadedImage) {
       setSignUpData({ ...signUpData, avatar: uploadedImage });
-    }
 
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(uploadedImage);
-    fileReader.addEventListener("load", function () {
-      setViewImage(this.result);
-    });
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(uploadedImage);
+      fileReader.onload = () => setViewImage(fileReader.result);
+    }
   }
 
   async function createAccount(event) {
@@ -70,7 +68,7 @@ function SignUp() {
       <Particle option={option3} />
 
       {/* SignUp Form */}
-      <div className="relative z-10 flex flex-col gap-4 justify-center items-center min-h-screen px-4">
+      <div className="relative z-10 flex flex-col gap-6 justify-center items-center min-h-screen px-4 font-mulish">
         <motion.form
           onSubmit={createAccount}
           initial={{ opacity: 0, y: 30 }}
@@ -80,12 +78,12 @@ function SignUp() {
                      rounded-2xl p-8 w-full max-w-md text-white space-y-6"
         >
           {/* Heading */}
-          <div className="text-center">
-            <h1 className="text-4xl font-bold leading-snug tracking-wide bg-gradient-to-r from-[#FACC15] to-yellow-500 bg-clip-text text-transparent pb-1">
+          <div className="text-center space-y-2">
+            <h1 className="text-4xl font-extrabold tracking-wide bg-gradient-to-r from-[#E4B122] to-[#c9971a] bg-clip-text text-transparent">
               Sign Up
             </h1>
-            <p className="text-slate-300 mt-2">
-              Please fill this form to create your account
+            <p className="text-slate-300 text-sm md:text-base">
+              Fill in your details to create a new account
             </p>
           </div>
 
@@ -95,12 +93,12 @@ function SignUp() {
               <img
                 src={viewImage}
                 alt="avatar"
-                className="rounded-full w-14 h-14 object-cover border-2 border-[#FACC15]"
+                className="rounded-full w-14 h-14 object-cover border-2 border-[#E4B122]"
               />
             ) : (
               <label
                 htmlFor="image"
-                className="text-xl text-[#FACC15] cursor-pointer hidden md:block"
+                className="text-xl text-[#E4B122] cursor-pointer hidden md:block"
               >
                 <BsCloudUpload />
               </label>
@@ -110,17 +108,14 @@ function SignUp() {
               name="image"
               id="image"
               accept=".jpg, .jpeg, .png, .svg"
-              className="file-input file-input-bordered file-input-warning w-full text-white"
+              className="file-input file-input-bordered w-full text-white border-[#E4B122]/50 focus:border-[#E4B122] focus:ring-[#E4B122]"
               onChange={getImage}
             />
           </div>
 
           {/* Name Input */}
-          <div className="flex items-center w-full gap-3 px-4 h-14 rounded-lg bg-white/10 border border-white/20 focus-within:ring-2 focus-within:ring-[#FACC15]">
-            <label
-              htmlFor="name"
-              className="text-xl text-[#FACC15] hidden md:block"
-            >
+          <div className="flex items-center w-full gap-3 px-4 h-14 rounded-lg bg-white/10 border border-white/20 focus-within:ring-2 focus-within:ring-[#E4B122]">
+            <label htmlFor="name" className="text-xl text-[#E4B122] hidden md:block">
               <BsPerson />
             </label>
             <input
@@ -130,16 +125,14 @@ function SignUp() {
               placeholder="Enter Name"
               value={signUpData.name}
               onChange={handleUserInput}
+              required
               className="w-full bg-transparent border-0 outline-0 text-white placeholder-slate-400"
             />
           </div>
 
           {/* Email Input */}
-          <div className="flex items-center w-full gap-3 px-4 h-14 rounded-lg bg-white/10 border border-white/20 focus-within:ring-2 focus-within:ring-[#FACC15]">
-            <label
-              htmlFor="email"
-              className="text-xl text-[#FACC15] hidden md:block"
-            >
+          <div className="flex items-center w-full gap-3 px-4 h-14 rounded-lg bg-white/10 border border-white/20 focus-within:ring-2 focus-within:ring-[#E4B122]">
+            <label htmlFor="email" className="text-xl text-[#E4B122] hidden md:block">
               <BsEnvelope />
             </label>
             <input
@@ -149,16 +142,14 @@ function SignUp() {
               placeholder="Enter Email"
               value={signUpData.email}
               onChange={handleUserInput}
+              required
               className="w-full bg-transparent border-0 outline-0 text-white placeholder-slate-400"
             />
           </div>
 
           {/* Password Input */}
-          <div className="flex items-center w-full gap-3 px-4 h-14 rounded-lg bg-white/10 border border-white/20 focus-within:ring-2 focus-within:ring-[#FACC15]">
-            <label
-              htmlFor="password"
-              className="text-xl text-[#FACC15] hidden md:block"
-            >
+          <div className="flex items-center w-full gap-3 px-4 h-14 rounded-lg bg-white/10 border border-white/20 focus-within:ring-2 focus-within:ring-[#E4B122]">
+            <label htmlFor="password" className="text-xl text-[#E4B122] hidden md:block">
               <BsLock />
             </label>
             <input
@@ -168,6 +159,7 @@ function SignUp() {
               placeholder="Enter Password"
               value={signUpData.password}
               onChange={handleUserInput}
+              required
               className="w-full bg-transparent border-0 outline-0 text-white placeholder-slate-400"
             />
           </div>
@@ -177,20 +169,17 @@ function SignUp() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             type="submit"
-            className="w-full py-3 rounded-lg bg-[#FACC15] text-black font-semibold text-lg 
-                       shadow-lg hover:shadow-yellow-400/30 transition-all"
+            className="w-full py-3 rounded-lg bg-[#E4B122] text-black font-semibold text-lg 
+                       shadow-lg hover:shadow-[0_0_15px_rgba(228,177,34,0.5)] transition-all"
           >
             Sign Up
           </motion.button>
         </motion.form>
 
         {/* Already have account */}
-        <p className="text-white mt-4 text-lg">
+        <p className="text-white mt-2 text-sm md:text-base">
           Already have an account?{" "}
-          <Link
-            to="/login"
-            className="text-[#FACC15] font-semibold hover:underline"
-          >
+          <Link to="/login" className="text-[#E4B122] font-semibold hover:underline">
             Sign In
           </Link>
         </p>

@@ -49,9 +49,9 @@ function ChangePassword() {
 
     return (
         <HomeLayout>
-            <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 px-4">
+            <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 px-4 font-mulish">
                 {/* Glow effects */}
-                <div className="absolute top-40 -left-20 w-72 h-72 bg-yellow-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
+                <div className="absolute top-40 -left-20 w-72 h-72 bg-[#E4B122] rounded-full blur-3xl opacity-20 animate-pulse"></div>
                 <div className="absolute bottom-20 -right-20 w-72 h-72 bg-purple-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
 
                 {/* Form Card */}
@@ -63,8 +63,8 @@ function ChangePassword() {
                     className="relative z-10 w-full max-w-md bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-8 shadow-2xl space-y-6"
                 >
                     <div className="flex flex-col items-center gap-2 text-center">
-                        <LockKeyhole className="w-12 h-12 text-yellow-400" />
-                        <h1 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+                        <LockKeyhole className="w-12 h-12 text-[#E4B122]" />
+                        <h1 className="text-3xl font-extrabold bg-gradient-to-r from-[#E4B122] to-[#c9971a] bg-clip-text text-transparent">
                             Change Password
                         </h1>
                         <p className="text-sm text-gray-300">
@@ -86,7 +86,7 @@ function ChangePassword() {
                                 name="oldPassword"
                                 id="oldPassword"
                                 placeholder="Current password"
-                                className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                                className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E4B122]"
                                 value={data.oldPassword}
                                 onChange={handleChange}
                             />
@@ -104,7 +104,7 @@ function ChangePassword() {
                                 name="newPassword"
                                 id="newPassword"
                                 placeholder="New password"
-                                className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                                className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E4B122]"
                                 value={data.newPassword}
                                 onChange={handleChange}
                             />
@@ -122,7 +122,7 @@ function ChangePassword() {
                                 name="cnfPassword"
                                 id="cnfPassword"
                                 placeholder="Confirm new password"
-                                className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                                className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E4B122]"
                                 value={data.cnfPassword}
                                 onChange={handleChange}
                             />
@@ -134,7 +134,7 @@ function ChangePassword() {
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.97 }}
                         type="submit"
-                        className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-semibold shadow-lg hover:shadow-yellow-500/30 transition-all"
+                        className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-gradient-to-r from-[#E4B122] to-[#c9971a] text-black font-semibold shadow-lg hover:shadow-[#E4B122]/30 transition-all"
                     >
                         <CheckCircle className="w-5 h-5" />
                         Confirm

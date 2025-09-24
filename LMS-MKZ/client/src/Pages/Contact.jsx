@@ -58,7 +58,7 @@ function Contact() {
       <Particle option={option2} />
 
       {/* Contact Form Overlay */}
-      <div className="relative z-10 flex justify-center items-center min-h-screen px-4">
+      <div className="relative z-10 flex justify-center items-center min-h-screen px-4 font-mulish">
         <motion.form
           onSubmit={handleSubmit}
           initial={{ opacity: 0, y: 30 }}
@@ -67,12 +67,21 @@ function Contact() {
           className="backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl rounded-2xl 
                      p-8 w-full max-w-lg text-white space-y-6"
         >
-          <h1 className="text-4xl font-bold text-center bg-gradient-to-r from-[#FACC15] to-yellow-500 bg-clip-text text-transparent">
+          <h1
+            className="text-4xl font-bold text-center bg-clip-text text-transparent"
+            style={{
+              backgroundImage: "linear-gradient(to right, #E4B122, #d1a41f)",
+            }}
+          >
             Contact Us
           </h1>
-          <p className="text-center text-slate-300">
+
+          <p className="text-center text-slate-300 font-normal">
             Our support team will respond within{" "}
-            <span className="font-semibold text-[#FACC15]">24 hours</span>.
+            <span className="font-semibold" style={{ color: "#E4B122" }}>
+              24 hours
+            </span>
+            .
           </p>
 
           <div className="space-y-5">
@@ -89,10 +98,9 @@ function Contact() {
                 name="name"
                 value={userInput.name}
                 onChange={handleUserInput}
-                placeholder="John Doe"
+                placeholder="Name"
                 className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 
-                           focus:outline-none focus:ring-2 focus:ring-[#FACC15] 
-                           placeholder-slate-400"
+                           focus:outline-none focus:ring-2 focus:ring-[#E4B122] placeholder-slate-400"
               />
             </div>
 
@@ -111,8 +119,7 @@ function Contact() {
                 onChange={handleUserInput}
                 placeholder="example@email.com"
                 className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 
-                           focus:outline-none focus:ring-2 focus:ring-[#FACC15] 
-                           placeholder-slate-400"
+                           focus:outline-none focus:ring-2 focus:ring-[#E4B122] placeholder-slate-400"
               />
             </div>
 
@@ -131,8 +138,7 @@ function Contact() {
                 onChange={handleUserInput}
                 placeholder="Write your message..."
                 className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 
-                           focus:outline-none focus:ring-2 focus:ring-[#FACC15] 
-                           placeholder-slate-400 resize-none"
+                           focus:outline-none focus:ring-2 focus:ring-[#E4B122] placeholder-slate-400 resize-none"
               ></textarea>
             </div>
           </div>
@@ -142,8 +148,7 @@ function Contact() {
             whileTap={{ scale: 0.95 }}
             type="submit"
             className="flex items-center justify-center gap-2 w-full py-3 rounded-lg 
-                       bg-[#FACC15] text-black font-semibold text-lg 
-                       shadow-lg hover:shadow-yellow-400/30 transition-all"
+                       text-black font-bold text-lg shadow-lg transition-all bg-[#E4B122]"
           >
             <Send className="w-5 h-5" /> Send Message
           </motion.button>

@@ -9,7 +9,7 @@ function TermsOfService() {
       <Particle option={option1} />
 
       {/* Page Content */}
-      <div className="min-h-screen flex flex-col items-center px-4 md:px-8 py-16 relative z-10">
+      <div className="min-h-screen flex flex-col items-center px-4 md:px-8 py-16 relative z-10 font-mulish">
         {/* Header */}
         <h1 className="text-4xl md:text-5xl font-extrabold text-white text-center mb-4 drop-shadow-lg">
           Terms of Service
@@ -24,7 +24,7 @@ function TermsOfService() {
         <div className="w-full max-w-4xl bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl shadow-xl p-6 md:p-10 text-gray-200 leading-relaxed space-y-10">
           {/* Section 1 */}
           <div>
-            <h2 className="text-xl md:text-2xl font-bold text-[#FACC15] mb-2">
+            <h2 className="text-xl md:text-2xl font-bold text-[#E4B122] mb-2">
               1. Acceptance of Terms
             </h2>
             <p>
@@ -34,18 +34,14 @@ function TermsOfService() {
             </p>
           </div>
 
-          {/* Divider */}
           <hr className="border-gray-700" />
 
           {/* Section 2 */}
           <div>
-            <h2 className="text-xl md:text-2xl font-bold text-[#FACC15] mb-2">
+            <h2 className="text-xl md:text-2xl font-bold text-[#E4B122] mb-2">
               2. User Accounts
             </h2>
-            <p>
-              To access certain features, you must create an account. You agree
-              to:
-            </p>
+            <p>To access certain features, you must create an account. You agree to:</p>
             <ul className="list-disc pl-6 mt-2 space-y-1">
               <li>Provide accurate and up-to-date information.</li>
               <li>Maintain the confidentiality of your credentials.</li>
@@ -57,7 +53,7 @@ function TermsOfService() {
 
           {/* Section 3 */}
           <div>
-            <h2 className="text-xl md:text-2xl font-bold text-[#FACC15] mb-2">
+            <h2 className="text-xl md:text-2xl font-bold text-[#E4B122] mb-2">
               3. Course Enrollment & Access
             </h2>
             <p>
@@ -72,12 +68,12 @@ function TermsOfService() {
 
           {/* Section 4 */}
           <div>
-            <h2 className="text-xl md:text-2xl font-bold text-[#FACC15] mb-2">
+            <h2 className="text-xl md:text-2xl font-bold text-[#E4B122] mb-2">
               4. Payments & Refunds
             </h2>
             <p>
               All transactions are processed securely. MZK Learning provides a{" "}
-              <span className="font-semibold text-[#FACC15]">
+              <span className="font-semibold text-[#E4B122]">
                 7-day refund policy
               </span>{" "}
               for eligible courses. After this period, refunds are only granted
@@ -89,7 +85,7 @@ function TermsOfService() {
 
           {/* Section 5 */}
           <div>
-            <h2 className="text-xl md:text-2xl font-bold text-[#FACC15] mb-2">
+            <h2 className="text-xl md:text-2xl font-bold text-[#E4B122] mb-2">
               5. Instructor Responsibilities
             </h2>
             <p>
@@ -103,7 +99,7 @@ function TermsOfService() {
 
           {/* Section 6 */}
           <div>
-            <h2 className="text-xl md:text-2xl font-bold text-[#FACC15] mb-2">
+            <h2 className="text-xl md:text-2xl font-bold text-[#E4B122] mb-2">
               6. Prohibited Use
             </h2>
             <p>
@@ -117,7 +113,7 @@ function TermsOfService() {
 
           {/* Section 7 */}
           <div>
-            <h2 className="text-xl md:text-2xl font-bold text-[#FACC15] mb-2">
+            <h2 className="text-xl md:text-2xl font-bold text-[#E4B122] mb-2">
               7. Limitation of Liability
             </h2>
             <p>
@@ -131,7 +127,7 @@ function TermsOfService() {
 
           {/* Section 8 */}
           <div>
-            <h2 className="text-xl md:text-2xl font-bold text-[#FACC15] mb-2">
+            <h2 className="text-xl md:text-2xl font-bold text-[#E4B122] mb-2">
               8. Updates to Terms
             </h2>
             <p>
@@ -148,7 +144,7 @@ function TermsOfService() {
           </p>
           <a
             href="/contact"
-            className="px-6 py-3 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-semibold rounded-xl shadow hover:from-yellow-500 hover:to-yellow-700 transition duration-300"
+            className="px-6 py-3 bg-gradient-to-r from-[#E4B122] to-[#d6a81e] text-black font-semibold rounded-xl shadow hover:from-[#d6a81e] hover:to-[#c9971a] transition duration-300"
           >
             Contact Support
           </a>

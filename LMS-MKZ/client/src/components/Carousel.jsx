@@ -6,16 +6,6 @@ function Carousel() {
     const [slidenumber, setSlideNumber] = useState(1);
     const [fade, setFade] = useState(true);
 
-    const handlePrevClick = () => {
-        setFade(false);
-        setTimeout(() => {
-            setSlideNumber((currSlide) =>
-                currSlide === 1 ? celeb.length : currSlide - 1
-            );
-            setFade(true);
-        }, 300); // match fade duration
-    };
-
     const handleNextClick = () => {
         setFade(false);
         setTimeout(() => {
@@ -34,22 +24,13 @@ function Carousel() {
     }, []);
 
     return (
-        <div className="relative">
-
-
+        <div className="relative font-mulish">
             <div
                 className={`transition-opacity duration-500 ${fade ? "opacity-100" : "opacity-0"
                     }`}
             >
                 <CarouselDiv key={slidenumber} {...celeb[slidenumber - 1]} />
             </div>
-
-            <button
-                onClick={handleNextClick}
-                className="btn btn-circle absolute z-30 flex justify-center items-center lg:right-5 right-1 top-1/2"
-            >
-                ❯
-            </button>
         </div>
     );
 }

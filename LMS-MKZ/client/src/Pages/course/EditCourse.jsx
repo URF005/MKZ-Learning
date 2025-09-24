@@ -66,7 +66,7 @@ function EditCourse() {
 
     return (
         <HomeLayout>
-            <div className="min-h-screen flex flex-col items-center justify-center py-10 px-4 md:px-12 lg:px-20">
+            <div className="min-h-screen flex flex-col items-center justify-center py-10 px-4 md:px-12 lg:px-20 font-mulish">
                 <motion.form
                     onSubmit={onSubmit}
                     initial={{ opacity: 0, y: 30 }}
@@ -90,7 +90,10 @@ function EditCourse() {
                         )}
 
                         <div className="flex flex-col gap-2">
-                            <label className="font-semibold text-slate-200 text-lg" htmlFor="thumbnail">
+                            <label
+                                className="font-semibold text-slate-200 text-lg"
+                                htmlFor="thumbnail"
+                            >
                                 Course Thumbnail
                             </label>
                             <input
@@ -99,7 +102,7 @@ function EditCourse() {
                                 id="thumbnail"
                                 accept=".jpg, .jpeg, .png, .svg"
                                 onChange={handleImage}
-                                className="file-input file-input-bordered file-input-accent w-full text-white"
+                                className="file-input file-input-bordered w-full text-white border border-[#E4B122]/60 focus:ring-2 focus:ring-[#E4B122]"
                             />
                         </div>
                     </div>
@@ -107,12 +110,30 @@ function EditCourse() {
                     {/* Right side - Form */}
                     <div className="lg:w-1/2 w-full flex flex-col gap-6">
                         {[
-                            { id: "title", label: "Course Title", type: "text", value: userInput.title },
-                            { id: "createdBy", label: "Course Instructor", type: "text", value: userInput.createdBy },
-                            { id: "category", label: "Course Domain", type: "text", value: userInput.category },
+                            {
+                                id: "title",
+                                label: "Course Title",
+                                type: "text",
+                                value: userInput.title,
+                            },
+                            {
+                                id: "createdBy",
+                                label: "Course Instructor",
+                                type: "text",
+                                value: userInput.createdBy,
+                            },
+                            {
+                                id: "category",
+                                label: "Course Domain",
+                                type: "text",
+                                value: userInput.category,
+                            },
                         ].map((field) => (
                             <div key={field.id} className="flex flex-col gap-2">
-                                <label htmlFor={field.id} className="font-semibold text-slate-200 text-lg">
+                                <label
+                                    htmlFor={field.id}
+                                    className="font-semibold text-slate-200 text-lg"
+                                >
                                     {field.label}
                                 </label>
                                 <input
@@ -122,13 +143,16 @@ function EditCourse() {
                                     value={field.value}
                                     onChange={handleChange}
                                     placeholder={`Enter ${field.label}`}
-                                    className="input input-bordered w-full bg-white/5 text-white placeholder-gray-400 border border-white/20 focus:ring-2 focus:ring-yellow-400 rounded-lg"
+                                    className="input input-bordered w-full bg-white/5 text-white placeholder-gray-400 border border-white/20 focus:ring-2 focus:ring-[#E4B122] rounded-lg"
                                 />
                             </div>
                         ))}
 
                         <div className="flex flex-col gap-2">
-                            <label htmlFor="description" className="font-semibold text-slate-200 text-lg">
+                            <label
+                                htmlFor="description"
+                                className="font-semibold text-slate-200 text-lg"
+                            >
                                 Course Description
                             </label>
                             <textarea
@@ -137,7 +161,7 @@ function EditCourse() {
                                 value={userInput.description}
                                 onChange={handleChange}
                                 placeholder="Update course description..."
-                                className="textarea w-full min-h-[120px] bg-white/5 text-white placeholder-gray-400 border border-white/20 focus:ring-2 focus:ring-yellow-400 rounded-lg resize-y"
+                                className="textarea w-full min-h-[120px] bg-white/5 text-white placeholder-gray-400 border border-white/20 focus:ring-2 focus:ring-[#E4B122] rounded-lg resize-y"
                             />
                         </div>
 
@@ -145,11 +169,10 @@ function EditCourse() {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.97 }}
                             type="submit"
-                            className="w-full py-3 rounded-lg bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-semibold shadow-lg hover:shadow-yellow-500/30 transition-all"
+                            className="w-full py-3 rounded-lg bg-gradient-to-r from-[#E4B122] to-[#d9a61d] text-black font-semibold shadow-lg hover:shadow-[#E4B122]/40 transition-all"
                         >
                             Confirm Update
                         </motion.button>
-
                     </div>
                 </motion.form>
             </div>

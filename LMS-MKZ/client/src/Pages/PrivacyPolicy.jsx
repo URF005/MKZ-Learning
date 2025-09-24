@@ -9,7 +9,7 @@ function PrivacyPolicy() {
       <Particle option={option1} />
 
       {/* Page Content */}
-      <div className="min-h-screen flex flex-col items-center px-4 md:px-8 py-16 relative z-10">
+      <div className="min-h-screen flex flex-col items-center px-4 md:px-8 py-16 relative z-10 font-mulish">
         {/* Header */}
         <h1 className="text-4xl md:text-5xl font-extrabold text-white text-center mb-4 drop-shadow-lg">
           Privacy Policy
@@ -21,10 +21,10 @@ function PrivacyPolicy() {
         </p>
 
         {/* Timeline Style Sections */}
-        <div className="relative w-full max-w-4xl border-l-2 border-yellow-500/60 pl-6 space-y-12">
+        <div className="relative w-full max-w-4xl border-l-2 border-[#E4B122]/60 pl-6 space-y-12">
           {/* Section 1 */}
           <div>
-            <h2 className="text-2xl font-semibold text-[#FACC15] mb-2">
+            <h2 className="text-2xl font-semibold text-[#E4B122] mb-2">
               📥 Information We Collect
             </h2>
             <p className="text-gray-200 leading-relaxed">
@@ -36,7 +36,7 @@ function PrivacyPolicy() {
 
           {/* Section 2 */}
           <div>
-            <h2 className="text-2xl font-semibold text-[#FACC15] mb-2">
+            <h2 className="text-2xl font-semibold text-[#E4B122] mb-2">
               ⚙️ How We Use Your Data
             </h2>
             <ul className="list-disc pl-6 text-gray-200 space-y-2">
@@ -49,7 +49,7 @@ function PrivacyPolicy() {
 
           {/* Section 3 */}
           <div>
-            <h2 className="text-2xl font-semibold text-[#FACC15] mb-2">
+            <h2 className="text-2xl font-semibold text-[#E4B122] mb-2">
               🍪 Cookies & Tracking
             </h2>
             <p className="text-gray-200 leading-relaxed">
@@ -61,7 +61,7 @@ function PrivacyPolicy() {
 
           {/* Section 4 */}
           <div>
-            <h2 className="text-2xl font-semibold text-[#FACC15] mb-2">
+            <h2 className="text-2xl font-semibold text-[#E4B122] mb-2">
               🔒 Data Security
             </h2>
             <p className="text-gray-200 leading-relaxed">
@@ -90,7 +90,7 @@ function PrivacyPolicy() {
 
           {/* Section 6 */}
           <div>
-            <h2 className="text-2xl font-semibold text-[#FACC15] mb-2">
+            <h2 className="text-2xl font-semibold text-[#E4B122] mb-2">
               📝 Your Rights
             </h2>
             <p className="text-gray-200 leading-relaxed">
@@ -102,7 +102,7 @@ function PrivacyPolicy() {
 
           {/* Section 7 */}
           <div>
-            <h2 className="text-2xl font-semibold text-[#FACC15] mb-2">
+            <h2 className="text-2xl font-semibold text-[#E4B122] mb-2">
               🔄 Policy Updates
             </h2>
             <p className="text-gray-200 leading-relaxed">
@@ -119,7 +119,7 @@ function PrivacyPolicy() {
           </p>
           <a
             href="/contact"
-            className="px-6 py-3 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-semibold rounded-xl shadow hover:from-yellow-500 hover:to-yellow-700 transition duration-300"
+            className="px-6 py-3 bg-gradient-to-r from-[#E4B122] to-[#d6a81e] text-black font-semibold rounded-xl shadow hover:from-[#d6a81e] hover:to-[#c9971a] transition duration-300"
           >
             Contact Support
           </a>

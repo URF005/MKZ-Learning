@@ -56,7 +56,7 @@ function HomeLayout({ children }) {
   ]
 
   return (
-    <div className="relative min-h-screen bg-background">
+    <div className="relative min-h-screen bg-background font-mulish">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md">
         <div className="flex items-center justify-between p-4">
@@ -64,7 +64,7 @@ function HomeLayout({ children }) {
             onClick={toggleDrawer}
             className="p-2 rounded-xl bg-background shadow-sm transition-all duration-200"
             onMouseEnter={(e) => {
-              e.target.style.backgroundColor = "#FACC15"
+              e.target.style.backgroundColor = "#E4B122"
               e.target.style.color = "black"
             }}
             onMouseLeave={(e) => {
@@ -106,12 +106,12 @@ function HomeLayout({ children }) {
           {/* Drawer Header */}
           <div className="p-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-foreground">Menu</h2>
+              <h2 className="text-xl font-bold text-foreground">Menu</h2>
               <button
                 onClick={closeDrawer}
                 className="p-2 rounded-lg transition-all duration-200"
                 onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = "#FACC15"
+                  e.target.style.backgroundColor = "#E4B122"
                   e.target.style.color = "black"
                 }}
                 onMouseLeave={(e) => {
@@ -137,7 +137,9 @@ function HomeLayout({ children }) {
                   <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-card"></div>
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Welcome back,</p>
+                  <p className="text-sm text-muted-foreground font-normal">
+                    Welcome back,
+                  </p>
                   <p className="font-semibold text-foreground capitalize">
                     {firstName}
                   </p>
@@ -155,7 +157,7 @@ function HomeLayout({ children }) {
                   onClick={closeDrawer}
                   className="flex items-center gap-3 px-4 py-3 rounded-xl text-foreground transition-all duration-200 group"
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#FACC15"
+                    e.currentTarget.style.backgroundColor = "#E4B122"
                     e.currentTarget.style.color = "black"
                   }}
                   onMouseLeave={(e) => {
@@ -178,7 +180,7 @@ function HomeLayout({ children }) {
                   onClick={closeDrawer}
                   className="flex items-center gap-3 px-4 py-3 rounded-xl text-foreground transition-all duration-200 group"
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#FACC15"
+                    e.currentTarget.style.backgroundColor = "#E4B122"
                     e.currentTarget.style.color = "black"
                   }}
                   onMouseLeave={(e) => {
@@ -200,7 +202,7 @@ function HomeLayout({ children }) {
                   onClick={closeDrawer}
                   className="flex items-center gap-3 px-4 py-3 rounded-xl text-foreground transition-all duration-200 group"
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#FACC15"
+                    e.currentTarget.style.backgroundColor = "#E4B122"
                     e.currentTarget.style.color = "black"
                   }}
                   onMouseLeave={(e) => {
@@ -224,43 +226,19 @@ function HomeLayout({ children }) {
               <div className="space-y-3">
                 <Link to="/login" onClick={closeDrawer} className="block">
                   <button
-                    className="w-full py-3 px-4 rounded-xl font-semibold transition-all duration-200 shadow-sm text-black"
-                    style={{ backgroundColor: "#FACC15" }}
-                    onMouseEnter={(e) => {
-                      e.target.style.backgroundColor = "#E6B800"
-                      e.target.style.transform = "translateY(-1px)"
-                      e.target.style.boxShadow =
-                        "0 4px 12px rgba(250, 204, 21, 0.3)"
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.backgroundColor = "#FACC15"
-                      e.target.style.transform = "translateY(0)"
-                      e.target.style.boxShadow = ""
-                    }}
+                    className="w-full py-3 px-4 rounded-xl font-bold transition-all duration-200 shadow-sm text-black"
+                    style={{ backgroundColor: "#E4B122" }}
                   >
                     Sign In
                   </button>
                 </Link>
                 <Link to="/signup" onClick={closeDrawer} className="block">
                   <button
-                    className="w-full py-3 px-4 rounded-xl font-semibold transition-all duration-200 border-2"
+                    className="w-full py-3 px-4 rounded-xl font-bold transition-all duration-200 border-2"
                     style={{
-                      borderColor: "#FACC15",
-                      color: "#FACC15",
+                      borderColor: "#E4B122",
+                      color: "#E4B122",
                       backgroundColor: "transparent",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.backgroundColor = "#FACC15"
-                      e.target.style.color = "black"
-                      e.target.style.transform = "translateY(-1px)"
-                      e.target.style.boxShadow =
-                        "0 4px 12px rgba(250, 204, 21, 0.3)"
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.backgroundColor = "transparent"
-                      e.target.style.color = "#FACC15"
-                      e.target.style.transform = "translateY(0)"
-                      e.target.style.boxShadow = ""
                     }}
                   >
                     Sign Up
@@ -270,21 +248,18 @@ function HomeLayout({ children }) {
             ) : (
               <button
                 onClick={onLogout}
-                className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-destructive/10 text-destructive rounded-xl font-semibold transition-all duration-200"
-                onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = "#FACC15"
-                  e.target.style.color = "black"
-                  e.target.style.transform = "translateY(-1px)"
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = ""
-                  e.target.style.color = ""
-                  e.target.style.transform = "translateY(0)"
-                }}
+                className="w-full flex items-center justify-center gap-2 py-3 px-4 
+             bg-destructive/10 text-destructive rounded-xl font-bold 
+             transition-all duration-200 
+             hover:bg-[#E4B122] hover:text-black"
               >
                 <FiLogOut size={18} />
                 Sign Out
               </button>
+
+
+
+
             )}
           </div>
         </div>
