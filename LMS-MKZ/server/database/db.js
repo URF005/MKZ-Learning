@@ -5,7 +5,7 @@ mongoose.set('strictQuery', false);
 export const connectDb = async () => {
     try {
         await mongoose.connect(process.env.MONGO_URI, {
-            dbName: 'Lms',
+            dbName: 'MZK-DIGITAL-LEARNING',
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
