@@ -133,7 +133,7 @@ const HomePage = () => {
                     >
                         <div className="overflow-hidden">
                             <img
-                                src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80"
+                                src="https://images.unsplash.com/photo-1593720213428-28a5b9e94613?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                 alt="Web Development Bootcamp"
                                 className="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500"
                             />
@@ -180,25 +180,25 @@ const HomePage = () => {
                         {[
                             {
                                 title: "Data Science with Python",
-                                img: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=800&q=80",
+                                img: "https://plus.unsplash.com/premium_photo-1664297950425-99a968926a74?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                                 desc: "Learn Pandas, NumPy, and ML basics.",
                                 tag: "Intermediate"
                             },
                             {
                                 title: "Digital Marketing Mastery",
-                                img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
+                                img: "https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                                 desc: "SEO, Social Media, and Ads strategies.",
                                 tag: "Beginner"
                             },
                             {
                                 title: "UI/UX Design Fundamentals",
-                                img: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=800&q=80",
+                                img: "https://plus.unsplash.com/premium_photo-1733306548826-95daff988ae6?q=80&w=912&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                                 desc: "Design modern interfaces with Figma.",
                                 tag: "Creative"
                             },
                             {
                                 title: "Cloud Computing Essentials",
-                                img: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80",
+                                img: "https://images.unsplash.com/photo-1667984390538-3dea7a3fe33d?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                                 desc: "Intro to AWS, Azure, and deployments.",
                                 tag: "Certificate"
                             }
