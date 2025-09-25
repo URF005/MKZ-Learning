@@ -25,7 +25,6 @@ import CheckoutSuccess from './Pages/payments/CheckoutSuccess'
 import Profile from './Pages/user/Profile'
 
 // Newly added footer pages
-import Pricing from './Pages/Pricing'
 import HelpCenter from './Pages/HelpCenter'
 
 import TermsOfService from './Pages/TermsOfService'
@@ -65,9 +64,7 @@ function App() {
         document.title = `Change Password - ${baseTitle}`;
       }
       // Footer pages
-      else if (path === "/pricing") {
-        document.title = `Pricing - ${baseTitle}`;
-      } else if (path === "/help") {
+      else if (path === "/help") {
         document.title = `Help Center - ${baseTitle}`;
       } else if (path === "/terms") {
         document.title = `Terms of Service - ${baseTitle}`;
@@ -120,7 +117,6 @@ function App() {
         </Route>
 
         {/* Footer pages */}
-        <Route path='/pricing' element={<Pricing />} />
         <Route path='/help' element={<HelpCenter />} />
 
         <Route path='/terms' element={<TermsOfService />} />

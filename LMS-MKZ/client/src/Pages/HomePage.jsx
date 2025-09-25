@@ -7,11 +7,24 @@ import Particle from "../components/Particle"
 import HomeLayout from "../Layouts/HomeLayout"
 
 const testimonials = [
-    { text: "This platform completely changed my career! Highly recommend.", name: "Ayesha, Web Developer" },
-    { text: "Affordable and high-quality courses. Learned at my own pace.", name: "Ali, Data Scientist" },
-    { text: "Best LMS I’ve ever used. Certificates helped me land a job!", name: "Sara, Marketing Specialist" },
-    { text: "Amazing instructors and very user-friendly platform.", name: "Hassan, Designer" }
+    {
+        text: "The YouTube course gave me the exact roadmap to grow my channel — I gained 10k subscribers in just 2 months!",
+        name: "Ayesha, Content Creator"
+    },
+    {
+        text: "The TikTok strategies were spot on! I went from random posting to consistent viral videos.",
+        name: "Ali, TikTok Influencer"
+    },
+    {
+        text: "The Video Editing course made editing so much easier. My videos now look professional and engaging.",
+        name: "Sara, Video Editor"
+    },
+    {
+        text: "YouTube Automation changed everything for me. Now I run multiple channels with minimal effort.",
+        name: "Hassan, Digital Entrepreneur"
+    }
 ]
+
 
 const HomePage = () => {
     const [currentTestimonial, setCurrentTestimonial] = useState(0)
@@ -119,88 +132,59 @@ const HomePage = () => {
                 </div>
             </section>
 
-            {/* Popular Courses */}
+            {/* Upcoming Courses */}
             <section className="py-16 px-4 sm:px-8 bg-gray-900 text-white font-mulish">
                 <h2 className="w-full text-3xl sm:text-4xl font-bold text-center mb-12 relative">
-                    Popular <span className="text-[#E4B122]">Courses</span>
+                    Our <span className="text-[#E4B122]">Courses</span>
                 </h2>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-6xl mx-auto">
-                    {/* Featured Course */}
+                    {/* Featured Upcoming Course */}
                     <div
                         className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg group border border-gray-700 transition"
                         style={{ boxShadow: "0 4px 12px rgba(228, 177, 34, 0.3)" }}
                     >
                         <div className="overflow-hidden">
                             <img
-                                src="https://images.unsplash.com/photo-1593720213428-28a5b9e94613?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                alt="Web Development Bootcamp"
+                                src="https://images.unsplash.com/photo-1594321120022-7649850959bb?q=80&w=829&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="TikTok Course"
                                 className="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500"
                             />
                         </div>
                         <div className="p-6">
-                            <div className="flex items-center gap-2 mb-3">
-                                <span className="px-3 py-1 text-xs text-black rounded-full bg-[#E4B122]">
-                                    Beginner Friendly
-                                </span>
-                                <span className="px-3 py-1 text-xs bg-green-500/80 text-white rounded-full">
-                                    Certificate
-                                </span>
-                            </div>
                             <h3 className="text-xl sm:text-2xl font-semibold text-[#E4B122]">
-                                Web Development Bootcamp
+                                TikTok Growth Mastery
                             </h3>
                             <p className="text-gray-400 mt-3 text-sm sm:text-base leading-relaxed font-normal">
-                                Master HTML, CSS, JavaScript, and React to build full-stack applications. Includes Node.js, Express,
-                                MongoDB, and real-world projects to boost your portfolio.
+                                Learn how to create viral content, grow your audience, and monetize TikTok effectively with step-by-step strategies.
                             </p>
 
-                            {/* Enroll Now Button */}
-                            <Link to="/signup">
-                                <button
-                                    className="mt-5 px-6 py-3 text-black rounded-lg transition font-semibold shadow-md font-mulish"
-                                    style={{ backgroundColor: "#E4B122" }}
-                                    onMouseEnter={(e) => {
-                                        e.target.style.backgroundColor = "white"
-                                        e.target.style.color = "#E4B122"
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        e.target.style.backgroundColor = "#E4B122"
-                                        e.target.style.color = "black"
-                                    }}
-                                >
-                                    Enroll Now
-                                </button>
-                            </Link>
+
                         </div>
                     </div>
 
-                    {/* Small Courses */}
+                    {/* Small Upcoming Courses */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {[
                             {
-                                title: "Data Science with Python",
-                                img: "https://plus.unsplash.com/premium_photo-1664297950425-99a968926a74?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                                desc: "Learn Pandas, NumPy, and ML basics.",
-                                tag: "Intermediate"
+                                title: "Video Editing Masterclass",
+                                img: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                                desc: "Master Premiere Pro, After Effects, and CapCut to edit professional-quality videos."
                             },
                             {
-                                title: "Digital Marketing Mastery",
-                                img: "https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                                desc: "SEO, Social Media, and Ads strategies.",
-                                tag: "Beginner"
+                                title: "YouTube Content Creation",
+                                img: "https://images.unsplash.com/photo-1678329885908-85eb768aa61b?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                                desc: "Build, grow, and monetize your YouTube channel with proven techniques."
                             },
                             {
-                                title: "UI/UX Design Fundamentals",
-                                img: "https://plus.unsplash.com/premium_photo-1733306548826-95daff988ae6?q=80&w=912&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                                desc: "Design modern interfaces with Figma.",
-                                tag: "Creative"
+                                title: "YouTube Automation Secrets",
+                                img: "https://images.unsplash.com/photo-1746608942838-a484d55ffeda?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                                desc: "Learn how to run multiple cash-cow YouTube channels with automation."
                             },
                             {
-                                title: "Cloud Computing Essentials",
-                                img: "https://images.unsplash.com/photo-1667984390538-3dea7a3fe33d?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                                desc: "Intro to AWS, Azure, and deployments.",
-                                tag: "Certificate"
+                                title: "SEO Mastery Course",
+                                img: "https://images.unsplash.com/photo-1562577309-2592ab84b1bc?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                                desc: "Boost website rankings with SEO strategies for Google and YouTube search."
                             }
                         ].map((course, idx) => (
                             <div
@@ -215,11 +199,6 @@ const HomePage = () => {
                                         className="h-28 sm:h-32 w-full object-cover rounded-md mb-4 transform group-hover:scale-105 transition duration-500"
                                     />
                                 </div>
-                                <div className="flex items-center gap-2 mb-2">
-                                    <span className="px-2 py-0.5 text-xs text-black rounded-full bg-[#E4B122]">
-                                        {course.tag}
-                                    </span>
-                                </div>
                                 <h4 className="font-semibold text-base sm:text-lg text-[#E4B122]">
                                     {course.title}
                                 </h4>
@@ -231,6 +210,9 @@ const HomePage = () => {
                     </div>
                 </div>
             </section>
+
+
+
 
             {/* Testimonials */}
             <section className="py-16 px-4 sm:px-8 bg-gray-900 text-white flex flex-col items-center font-mulish">

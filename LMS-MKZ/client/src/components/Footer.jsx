@@ -50,14 +50,7 @@ function Footer() {
                 Courses
               </Link>
             </li>
-            <li>
-              <Link
-                to="/pricing"
-                className="text-gray-400 hover:text-[#E4B122] transition-colors duration-300"
-              >
-                Pricing
-              </Link>
-            </li>
+
             <li>
               <Link
                 to="/contact"

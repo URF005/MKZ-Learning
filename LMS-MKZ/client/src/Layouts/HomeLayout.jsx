@@ -49,7 +49,6 @@ function HomeLayout({ children }) {
   const navigationItems = [
     { icon: FiHome, label: "Home", path: "/" },
     { icon: FiBookOpen, label: "All Courses", path: "/courses" },
-    { icon: FiDollarSign, label: "Pricing", path: "/pricing" },
     { icon: FiMail, label: "Contact Us", path: "/contact" },
     { icon: FiInfo, label: "About Us", path: "/about" },
     { icon: FiShield, label: "Privacy Policy", path: "/privacy" },
