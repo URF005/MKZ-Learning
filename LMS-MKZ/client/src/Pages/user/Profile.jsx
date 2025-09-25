@@ -9,7 +9,6 @@ import {
   editProfile,
   getProfile,
 } from "../../redux/slices/AuthSlice";
-import { cancelSubscription } from "../../redux/slices/RazorpaySlice";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -66,14 +65,7 @@ function Profile() {
     }
   }
 
-  async function handleCancel(e) {
-    e.preventDefault();
-    const res = await dispatch(cancelSubscription());
-    if (res?.payload?.success) {
-      await dispatch(getProfile());
-      navigate("/");
-    }
-  }
+
 
   return (
     <HomeLayout>
@@ -206,8 +198,8 @@ function Profile() {
 
             <button
               className={`w-full lg:w-fit px-6 py-3 rounded-lg font-semibold transition-all shadow-md ${data.haschanges
-                  ? "bg-green-500 hover:bg-green-400 text-white"
-                  : "bg-gray-500/40 text-gray-300 cursor-not-allowed"
+                ? "bg-green-500 hover:bg-green-400 text-white"
+                : "bg-gray-500/40 text-gray-300 cursor-not-allowed"
                 }`}
               disabled={!data.haschanges}
               type="submit"
@@ -224,15 +216,6 @@ function Profile() {
             </button>
           </div>
 
-          {/* Cancel Subscription */}
-          {userData.subscription?.status === "active" && (
-            <button
-              onClick={handleCancel}
-              className="w-full px-6 py-3 rounded-lg font-semibold bg-red-500 hover:bg-red-400 text-white transition-all shadow-md"
-            >
-              Cancel Subscription
-            </button>
-          )}
         </form>
       </div>
     </HomeLayout>

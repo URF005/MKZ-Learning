@@ -1,19 +1,28 @@
-import { model, Schema } from 'mongoose'
+import { model, Schema } from "mongoose";
 
-const paymentSchema = new Schema({
-    payment_id: {
-        type: String,
-        required: true
+const paymentSchema = new Schema(
+    {
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+            required: true,
+        },
+        course: {
+            type: Schema.Types.ObjectId,
+            ref: "Course",
+            required: true,
+        },
+        receipt: {
+            type: String, // Cloudinary URL
+            required: true,
+        },
+        status: {
+            type: String,
+            enum: ["pending", "approved", "rejected", "expired"],
+            default: "pending",
+        },
     },
-    subscription_id: {
-        type: String,
-        required: true
-    },
-    razorpay_signature: {
-        type: String,
-        required: true
-    },
+    { timestamps: true }
+);
 
-}, { timestamps: true })
-
-export const Payment = model('Payment', paymentSchema)
+export const Payment = model("Payment", paymentSchema);

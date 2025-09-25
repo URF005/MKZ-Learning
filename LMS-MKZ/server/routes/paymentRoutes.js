@@ -1,14 +1,28 @@
-import { Router } from 'express'
-import { allPayments, buySubscription, cancelSubscription, getRazorpayKey, verifySubscription } from '../controller/paymentController.js'
-import { authorizedRole, isLoggedIn } from '../middleware/authMiddleware.js'
+import { Router } from "express";
+import {
+  uploadReceipt,
+  updateTransactionStatus,
+  expireSubscription,
+  getAllTransactions,
+} from "../controller/paymentController.js";
+import { authorizedRole, isLoggedIn } from "../middleware/authMiddleware.js";
+import upload from "../middleware/multer.js";
 
-const router = Router()
+const router = Router();
 
-router.get('/', isLoggedIn, authorizedRole('ADMIN'), allPayments)
-router.get('/key', isLoggedIn, getRazorpayKey)
-router.post('/subscribe', isLoggedIn, buySubscription)
-router.post('/verify', isLoggedIn, verifySubscription)
-router.post('/unsubscribe', isLoggedIn, cancelSubscription)
+router.post("/upload", isLoggedIn, upload.single("receipt"), uploadReceipt);
+router.get("/", isLoggedIn, authorizedRole("ADMIN"), getAllTransactions);
+router.post(
+  "/update/:transactionId",
+  isLoggedIn,
+  authorizedRole("ADMIN"),
+  updateTransactionStatus
+);
+router.post(
+  "/expire/:transactionId",
+  isLoggedIn,
+  authorizedRole("ADMIN"),
+  expireSubscription
+);
 
-
-export default router
+export default router;

@@ -20,8 +20,7 @@ import NotFound from './Pages/NotFound'
 import ChangePassword from './Pages/password/ChangePassword'
 import ResetPassword from './Pages/password/ResetPassword'
 import Checkout from './Pages/payments/Checkout'
-import CheckoutFail from './Pages/payments/CheckoutFail'
-import CheckoutSuccess from './Pages/payments/CheckoutSuccess'
+import PendingApproval from './Pages/payments/PendingApproval'
 import Profile from './Pages/user/Profile'
 
 // Newly added footer pages
@@ -111,8 +110,8 @@ function App() {
           <Route path='/profile' element={<Profile />} />
           <Route path='/profile/changePassword' element={<ChangePassword />} />
           <Route path='/course/:name/checkout' element={<Checkout />} />
-          <Route path='/course/:name/checkout/success' element={<CheckoutSuccess />} />
-          <Route path='/course/:name/checkout/fail' element={<CheckoutFail />} />
+          <Route path="/checkout/pending" element={<PendingApproval />} />
+
           <Route path='/course/:name/:id/lectures' element={<CourseLectures />} />
         </Route>
 
