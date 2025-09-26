@@ -9,6 +9,11 @@ function CourseDescription() {
   const navigate = useNavigate();
   const { role, data } = useSelector((state) => state.auth);
 
+  // ✅ Check if user is subscribed to this specific course
+  const isSubscribedToThisCourse = data?.subscriptions?.some(
+    (sub) => sub.courseId === state._id && sub.status === "active"
+  );
+
   return (
     <HomeLayout>
       <div className="min-h-screen flex flex-col lg:flex-row items-start gap-10 px-4 md:px-12 lg:px-20 py-12 font-mulish">
@@ -45,12 +50,12 @@ function CourseDescription() {
             whileTap={{ scale: 0.97 }}
             className="w-full py-3 rounded-xl bg-gradient-to-r from-[#E4B122] to-[#c9971a] text-black font-semibold shadow-lg hover:shadow-[#E4B122]/30 transition-all"
             onClick={() =>
-              role === "ADMIN" || data?.subscription?.status === "active"
+              role === "ADMIN" || isSubscribedToThisCourse
                 ? navigate(`/course/${state.title}/${state._id}/lectures`, { state })
                 : navigate(`/course/${state.title}/checkout`, { state })
             }
           >
-            {role === "ADMIN" || data?.subscription?.status === "active"
+            {role === "ADMIN" || isSubscribedToThisCourse
               ? "Go to Lectures"
               : "Subscribe Now"}
           </motion.button>

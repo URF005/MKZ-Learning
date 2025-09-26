@@ -1,4 +1,3 @@
-// U:\LMS-MKZ\server\middleware\multer.js
 import path from "path";
 import multer from "multer";
 import crypto from "crypto";
@@ -16,10 +15,11 @@ const storage = multer.diskStorage({
 });
 
 function fileFilter(_req, file, cb) {
-    const allowedExts = [".jpg", ".jpeg", ".png", ".webp"];
+    const allowedImageExts = [".jpg", ".jpeg", ".png", ".webp"];
+    const allowedVideoExts = [".mp4", ".mov", ".avi", ".mkv", ".webm"];
     const ext = path.extname(file.originalname).toLowerCase();
 
-    if (!allowedExts.includes(ext)) {
+    if (![...allowedImageExts, ...allowedVideoExts].includes(ext)) {
         return cb(new Error(`Unsupported file type! ${ext}`), false);
     }
     cb(null, true);
@@ -27,7 +27,7 @@ function fileFilter(_req, file, cb) {
 
 const upload = multer({
     storage,
-    limits: { fileSize: 5 * 1024 * 1024 }, // 5MB max
+    limits: { fileSize: 200 * 1024 * 1024 }, // allow larger files for video (200MB)
     fileFilter,
 });
 

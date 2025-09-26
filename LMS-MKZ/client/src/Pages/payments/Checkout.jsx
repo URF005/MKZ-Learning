@@ -1,4 +1,3 @@
-// U:\LMS-MKZ\client\src\Pages\payments\Checkout.jsx
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -12,7 +11,7 @@ import { uploadReceipt } from "../../Redux/slices/RazorpaySlice";
 function Checkout() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { state } = useLocation();
+  const { state } = useLocation(); // course info passed from CourseDescription
   const userdata = useSelector((s) => s.auth?.data);
 
   const [selectedFile, setSelectedFile] = useState(null);
@@ -57,11 +56,18 @@ function Checkout() {
     }
   }, []);
 
-  // 🚫 If user already has pending or active subscription → block re-upload
-  if (
-    userdata?.subscription?.status === "pending" ||
-    userdata?.subscription?.status === "active"
-  ) {
+  // ✅ Check if user already has a pending or active subscription for THIS course
+  const hasSubscriptionForThisCourse = userdata?.subscriptions?.some(
+    (sub) =>
+      sub.courseId === state?._id &&
+      (sub.status === "pending" || sub.status === "active")
+  );
+
+  if (hasSubscriptionForThisCourse) {
+    const subStatus = userdata.subscriptions.find(
+      (sub) => sub.courseId === state?._id
+    )?.status;
+
     return (
       <HomeLayout>
         <div className="flex items-center justify-center min-h-[80vh] text-center px-4">
@@ -76,11 +82,9 @@ function Checkout() {
             </h2>
             <p className="text-gray-300 text-sm sm:text-base">
               You already have a{" "}
-              <span className="font-semibold text-[#E4B122]">
-                {userdata.subscription.status}
-              </span>{" "}
-              subscription. <br />
-              {userdata.subscription.status === "pending"
+              <span className="font-semibold text-[#E4B122]">{subStatus}</span>{" "}
+              subscription for this course. <br />
+              {subStatus === "pending"
                 ? "Please wait for admin approval."
                 : "You already have an active subscription."}
             </p>
@@ -114,7 +118,7 @@ function Checkout() {
               <span className="font-semibold text-[#E4B122]">
                 Easypaisa, JazzCash, or Bank Transfer
               </span>{" "}
-              to unlock unlimited learning for{" "}
+              to unlock this course for{" "}
               <span className="font-bold text-[#E4B122]">1 year</span>.
             </p>
           </div>

@@ -10,11 +10,9 @@ export const contactUs = async (req, res, next) => {
     return next(createError(400, "All input fields are required"));
   }
 
-  // subjects
   const subject = `📩 New message from ${name}`;
   const replySubject = `Thank you ${name} for contacting us`;
 
-  // email body for admin
   const adminMessage = `
     <div style="font-family: Arial, sans-serif; padding: 16px;">
       <h2>New Contact Request</h2>
@@ -25,7 +23,6 @@ export const contactUs = async (req, res, next) => {
     </div>
   `;
 
-  // auto-reply to user
   const replyMessage = `
     <div style="font-family: Arial, sans-serif; padding: 16px;">
       <h3>Hello ${name},</h3>
@@ -37,10 +34,7 @@ export const contactUs = async (req, res, next) => {
   `;
 
   try {
-    // send to admin/support
     await sendMail(process.env.CONTACT_TO, subject, adminMessage);
-
-    // auto-reply to user
     await sendMail(email, replySubject, replyMessage);
 
     res.status(200).json({
@@ -53,18 +47,27 @@ export const contactUs = async (req, res, next) => {
 };
 
 // 📊 User Stats Controller
+// IMPORTANT: This assumes your User model uses `subscriptions: [{ courseId, status, transactionId }]`
 export const userStats = async (req, res, next) => {
   try {
     const allUserCount = await User.countDocuments();
-    const subscribedUser = await User.countDocuments({
-      "subscription.status": "active",
+
+    // Users with at least one active subscription (per-course model)
+    const subscribedCount = await User.countDocuments({
+      subscriptions: { $elemMatch: { status: "active" } },
+    });
+
+    // If you want expired users too (optional, handy for charts)
+    const expiredCount = await User.countDocuments({
+      subscriptions: { $elemMatch: { status: "expired" } },
     });
 
     res.status(200).json({
       success: true,
       message: "Stats fetched successfully",
       allUserCount,
-      subscribedUser,
+      subscribedCount,   // ← unified key used by frontend
+      expiredCount,      // ← optional; include if you want to use it
     });
   } catch (error) {
     return next(createError(500, error.message));

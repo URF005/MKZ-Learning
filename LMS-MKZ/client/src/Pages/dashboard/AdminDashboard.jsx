@@ -10,7 +10,6 @@ import Chart, {
 import { useEffect } from "react";
 import { Line, Pie } from "react-chartjs-2";
 import { FaUsers } from "react-icons/fa";
-import { FcSalesPerformance } from "react-icons/fc";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { GiMoneyStack } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
@@ -166,6 +165,21 @@ function AdminDashboard() {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        {/* Courses Section */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 px-4 md:px-8 lg:px-16">
+          <h1 className="text-xl md:text-2xl font-bold text-slate-300">
+            Course Overview
+          </h1>
+          <Link to={"/course/create"} className="w-full md:w-auto">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              className="w-full md:w-auto px-6 py-2 rounded-lg bg-gradient-to-r from-[#E4B122] to-[#c9971a] text-black font-semibold shadow-md hover:shadow-[#E4B122]/40 transition"
+            >
+              + Create Course
+            </motion.button>
+          </Link>
         </div>
 
         {/* Courses Table */}
