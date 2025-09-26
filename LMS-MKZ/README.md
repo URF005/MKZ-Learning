@@ -1,6 +1,6 @@
 # Learning Management System (LMS) Project
 
-This repository contains the source code and implementation of a Learning Management System (LMS) developed using the MERN stack (MongoDB, Express.js, React, Node.js) along with Tailwind CSS and DaisyUI for styling, Cloudinary for managing media, and Razorpay for subscription management.
+This repository contains the source code and implementation of a Learning Management System (LMS) developed using the MERN stack (MongoDB, Express.js, React, Node.js) along with Tailwind CSS and DaisyUI for styling, Cloudinary for managing media, and local transaction for subscription management.
 
 ## Table of Contents
 
@@ -14,11 +14,11 @@ This repository contains the source code and implementation of a Learning Manage
 
 ## Overview
 
-The Learning Management System (LMS) is a web-based application that facilitates the management and delivery of educational content and training materials. It allows administrators to create courses, manage users, and track progress. Users can access courses, view content, and complete assessments. Additionally, it offers subscription management through Razorpay, allowing users to purchase and cancel subscriptions.
+The Learning Management System (LMS) is a web-based application that facilitates the management and delivery of educational content and training materials. It allows administrators to create courses, manage users, and track progress. Users can access courses, view content, and complete assessments. Additionally, it offers subscription management through local transactions, allowing users to purchase subscriptions.
 
 ## Preview
 
-You can preview the project at [Preview Link](https://lms-by-sukomal.vercel.app).
+You can preview the project at [Preview Link]().
 
 ## Features
 
@@ -28,7 +28,7 @@ You can preview the project at [Preview Link](https://lms-by-sukomal.vercel.app)
 - User enrollment in courses
 - Course progress tracking
 - Interactive user interface using React and Tailwind CSS
-- Subscription management with Razorpay
+- Subscription management with local transactions.
 
 ## Prerequisites
 
@@ -38,7 +38,6 @@ Before running this project locally, ensure you have the following installed:
 - [npm](https://www.npmjs.com/) (v6.x or higher)
 - [MongoDB](https://www.mongodb.com/) (v4.x or higher)
 - [Cloudinary](https://cloudinary.com/) account and API credentials
-- [Razorpay](https://razorpay.com/) account and API credentials
 
 ## Installation
 
@@ -74,11 +73,13 @@ Before running this project locally, ensure you have the following installed:
    CLOUD_NAME=<your_cloudinary_name>
    API_KEY=<your_cloudinary_api_key>
    API_SECRET=<your_cloudinary_api_secret>
-   GMAIL_ID=<mail_id_for_sending_mail>
-   APP_PASSWORD=<set_app_password_in_gmail>
-   RAZORPAY_API_KEY=<your_razorpay_api_key>
-   RAZORPAY_PLAN_ID=<your_subscription_plan_id>
-   RAZORPAY_KEY_SECRET=<your_razorpay_key_secret>
+   SMTP_HOST=<your_host>
+   SMTP_PORT=<465>
+   SMTP_SECURE=<true>
+   SMTP_USER=<your_user>
+   SMTP_PASS=<your_hosting>
+   FROM_NAME=<your_name>
+   CONTACT_TO=<email-where-contact-to>
    ```
 
 ## Usage
@@ -104,5 +105,5 @@ Before running this project locally, ensure you have the following installed:
 - Users can purchase subscriptions for accessing premium content or features.
 - Implement a subscription management interface that allows users to:
   - View available subscription plans
-  - Select and purchase a subscription plan via Razorpay
-  - Cancel an existing subscription
+  - Select and purchase a subscription plan via local transactions
+
