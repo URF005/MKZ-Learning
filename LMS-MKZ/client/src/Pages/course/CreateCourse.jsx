@@ -16,6 +16,7 @@ function CreateCourse() {
     description: "",
     category: "",
     createdBy: "",
+    price: "",
     thumbnail: null,
     previewImage: "",
   });
@@ -47,11 +48,17 @@ function CreateCourse() {
       return;
     }
 
+    if (!userInput.price) {
+      toast.error("Please enter a course price");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("title", userInput.title);
     formData.append("description", userInput.description);
     formData.append("category", userInput.category);
     formData.append("createdBy", userInput.createdBy);
+    formData.append("price", userInput.price);
     formData.append("thumbnail", userInput.thumbnail);
 
     const response = await dispatch(createCourse(formData));
@@ -62,6 +69,7 @@ function CreateCourse() {
         description: "",
         category: "",
         createdBy: "",
+        price: "",
         thumbnail: null,
         previewImage: "",
       });
@@ -131,6 +139,12 @@ function CreateCourse() {
                 label: "Course Domain",
                 type: "text",
                 value: userInput.category,
+              },
+              {
+                id: "price",
+                label: "Course Price (PKR)",
+                type: "number",
+                value: userInput.price,
               },
             ].map((field) => (
               <div key={field.id} className="flex flex-col gap-2">

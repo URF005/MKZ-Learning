@@ -17,11 +17,12 @@ function Checkout() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
 
+  // ✅ Dynamic course price
   const price = new Intl.NumberFormat("en-PK", {
     style: "currency",
     currency: "PKR",
     minimumFractionDigits: 0,
-  }).format(499);
+  }).format(state?.price || 0);
 
   async function handleConfirmPayment(e) {
     e.preventDefault();

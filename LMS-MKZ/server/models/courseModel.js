@@ -1,3 +1,4 @@
+// U:\LMS-MKZ\server\models\courseModel.js
 import { model, Schema } from 'mongoose'
 
 const courseSchema = new Schema({
@@ -20,6 +21,11 @@ const courseSchema = new Schema({
     category: {
         type: String,
         required: [true, 'Category is required']
+    },
+    price: {
+        type: Number,
+        required: [true, "Course price is required"],
+        min: [100, "Price must be at least PKR 100"],
     },
     thumbnail: {
         public_id: {
@@ -58,5 +64,4 @@ const courseSchema = new Schema({
 }, { timestamps: true })
 
 const Course = model('Course', courseSchema)
-
 export default Course

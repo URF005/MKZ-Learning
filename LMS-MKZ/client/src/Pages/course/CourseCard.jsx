@@ -40,6 +40,17 @@ function CourseCard({ data }) {
           </span>
         </p>
 
+        <p className="text-sm font-medium text-slate-300">
+          Price:{" "}
+          <span className="text-green-400 font-bold">
+            {new Intl.NumberFormat("en-PK", {
+              style: "currency",
+              currency: "PKR",
+              minimumFractionDigits: 0,
+            }).format(data.price)}
+          </span>
+        </p>
+
         <div className="flex justify-end mt-2">
           <span className="px-4 py-2 text-xs font-bold uppercase border border-[#E4B122] text-[#E4B122] rounded-full tracking-wide shadow-md hover:bg-[#E4B122] hover:text-black transition">
             {data.category}

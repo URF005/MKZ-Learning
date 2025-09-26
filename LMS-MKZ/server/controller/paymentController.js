@@ -147,26 +147,27 @@ export const getAllTransactions = async (req, res, next) => {
     try {
         const payments = await Payment.find({})
             .populate("user", "name email")
-            .populate("course", "title");
+            .populate("course", "title price");  // 👈 include price
 
         // Counts
         const approvedCount = payments.filter((p) => p.status === "approved").length;
         const rejectedCount = payments.filter((p) => p.status === "rejected").length;
         const expiredCount = payments.filter((p) => p.status === "expired").length;
 
-        // ✅ Revenue: count all payments that were ever approved
+        // ✅ Revenue: sum actual course prices
         const revenue = payments.reduce((sum, p) => {
-            return p.status === "approved" || p.status === "expired"
-                ? sum + 499
-                : sum;
+            if (p.status === "approved" || p.status === "expired") {
+                return sum + (p.course?.price || 0);
+            }
+            return sum;
         }, 0);
 
-        // ✅ Monthly sales
+        // ✅ Monthly sales: also count expired in the month they were created
         const monthlySalesRecord = Array(12).fill(0);
         payments.forEach((p) => {
             if (p.status === "approved" || p.status === "expired") {
                 const month = new Date(p.createdAt).getMonth();
-                monthlySalesRecord[month] += 1;
+                monthlySalesRecord[month] += (p.course?.price || 0);  // sum revenue per month
             }
         });
 

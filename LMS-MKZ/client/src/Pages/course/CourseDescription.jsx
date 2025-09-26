@@ -43,6 +43,16 @@ function CourseDescription() {
                 {state.createdBy}
               </span>
             </p>
+            <p className="font-semibold text-base md:text-lg text-gray-300">
+              Price:{" "}
+              <span className="text-green-400 font-bold">
+                {new Intl.NumberFormat("en-PK", {
+                  style: "currency",
+                  currency: "PKR",
+                  minimumFractionDigits: 0,
+                }).format(state.price)}
+              </span>
+            </p>
           </div>
 
           <motion.button
