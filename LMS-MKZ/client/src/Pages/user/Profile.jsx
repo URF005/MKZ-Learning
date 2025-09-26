@@ -14,6 +14,7 @@ function Profile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth?.data);
+
   const [data, setData] = useState({
     previewImage: userData.avatar?.secure_url,
     name: userData.name,
@@ -65,16 +66,14 @@ function Profile() {
     }
   }
 
-
-
   return (
     <HomeLayout>
-      <div className="flex justify-center items-center lg:h-screen mb-10 font-mulish">
+      <div className="flex justify-center items-center lg:h-screen mb-10 px-4 font-mulish">
         <form
           onSubmit={onFormSubmit}
           className="
-            lg:w-[60%] w-[95%] flex flex-col gap-8
-            rounded-2xl px-8 py-10
+            w-full max-w-3xl flex flex-col gap-8
+            rounded-2xl px-6 py-8 sm:px-10 sm:py-12
             shadow-xl
             bg-white/10 backdrop-blur-2xl border border-white/20
             transition-all duration-300
@@ -86,7 +85,7 @@ function Profile() {
               <img
                 src={data.previewImage || "/placeholder.svg"}
                 alt="profile photo"
-                className="rounded-full w-32 h-32 object-cover ring-4 ring-[#E4B122]/50 shadow-md"
+                className="rounded-full w-28 h-28 sm:w-32 sm:h-32 object-cover ring-4 ring-[#E4B122]/50 shadow-md"
               />
               <input
                 type="file"
@@ -111,11 +110,11 @@ function Profile() {
           </div>
 
           {/* Inputs */}
-          <div className="grid lg:grid-cols-2 grid-cols-1 gap-8 w-full">
+          <div className="grid sm:grid-cols-2 grid-cols-1 gap-6 w-full">
             <div className="flex w-full relative">
               <label
                 htmlFor="name"
-                className="absolute bg-background px-1 text-xs -top-2 left-5 text-gray-300"
+                className="absolute bg-background px-1 text-xs -top-2 left-4 text-gray-300"
               >
                 Name *
               </label>
@@ -132,7 +131,7 @@ function Profile() {
             <div className="flex w-full relative">
               <label
                 htmlFor="email"
-                className="absolute bg-background px-1 text-xs -top-2 left-5 text-gray-300"
+                className="absolute bg-background px-1 text-xs -top-2 left-4 text-gray-300"
               >
                 Email *
               </label>
@@ -149,7 +148,7 @@ function Profile() {
             <div className="flex relative">
               <label
                 htmlFor="role"
-                className="absolute bg-background px-1 text-xs -top-2 left-5 text-gray-300"
+                className="absolute bg-background px-1 text-xs -top-2 left-4 text-gray-300"
               >
                 Role *
               </label>
@@ -162,44 +161,23 @@ function Profile() {
                 disabled
               />
             </div>
-
-            <div className="flex relative">
-              <label
-                htmlFor="subscription"
-                className="absolute bg-background px-1 text-xs -top-2 left-5 text-gray-300"
-              >
-                Subscription *
-              </label>
-              <input
-                type="text"
-                name="subscription"
-                id="subscription"
-                defaultValue={
-                  userData.subscription?.status === "active"
-                    ? "Active"
-                    : "Inactive"
-                }
-                className="h-12 w-full font-semibold px-4 py-2 rounded-lg border border-gray-500/40 bg-gray-800/30 text-gray-400 capitalize outline-none"
-                disabled
-              />
-            </div>
           </div>
 
           {/* Actions */}
-          <div className="w-full flex lg:flex-row flex-col gap-6 items-center">
-            <Link to={"/profile/changePassword"} className="w-full lg:w-fit">
+          <div className="w-full flex flex-col sm:flex-row gap-6 items-center">
+            <Link to={"/profile/changePassword"} className="w-full sm:w-fit">
               <button
                 type="button"
-                className="w-full lg:w-fit px-6 py-3 rounded-lg font-semibold text-black bg-[#E4B122] hover:bg-[#c9971a] transition-all shadow-md"
+                className="w-full sm:w-fit px-6 py-3 rounded-lg font-semibold text-black bg-[#E4B122] hover:bg-[#c9971a] transition-all shadow-md"
               >
                 Change Password
               </button>
             </Link>
 
             <button
-              className={`w-full lg:w-fit px-6 py-3 rounded-lg font-semibold transition-all shadow-md ${data.haschanges
-                ? "bg-green-500 hover:bg-green-400 text-white"
-                : "bg-gray-500/40 text-gray-300 cursor-not-allowed"
+              className={`w-full sm:w-fit px-6 py-3 rounded-lg font-semibold transition-all shadow-md ${data.haschanges
+                  ? "bg-green-500 hover:bg-green-400 text-white"
+                  : "bg-gray-500/40 text-gray-300 cursor-not-allowed"
                 }`}
               disabled={!data.haschanges}
               type="submit"
@@ -216,6 +194,18 @@ function Profile() {
             </button>
           </div>
 
+          {/* Important Notice */}
+          <div className="mt-6 p-4 rounded-lg border border-yellow-400 bg-yellow-100/20 text-yellow-200 shadow-md">
+            <h3 className="font-bold text-yellow-300 text-lg mb-2">
+              Important Notice
+            </h3>
+            <p className="text-sm">
+              After changing your password or Deleting account, please{" "}
+              <strong>clear your browser cache and cookies</strong> before
+              logging in again. This ensures your session updates properly with
+              the new credentials or new SignUp.
+            </p>
+          </div>
         </form>
       </div>
     </HomeLayout>

@@ -1,9 +1,10 @@
 // U:\LMS-MKZ\server\controllers\courseController.js
-import Course from '../models/courseModel.js';
-import createError from '../utils/error.js';
-import { v2 } from 'cloudinary';
-import fs from 'fs/promises';
-import { myCache } from '../app.js';
+import Course from "../models/courseModel.js";
+import createError from "../utils/error.js";
+import { v2 } from "cloudinary";
+import fs from "fs/promises";
+import { myCache } from "../app.js";
+import { buildWatermarkedVideoUrl } from "../utils/videoUrl.js";
 
 export const getAllCourses = async (req, res, next) => {
     try {
@@ -11,7 +12,7 @@ export const getAllCourses = async (req, res, next) => {
         if (myCache.has("courses")) {
             courses = JSON.parse(myCache.get("courses"));
         } else {
-            courses = await Course.find({}).select('-lectures');
+            courses = await Course.find({}).select("-lectures");
             if (!courses) {
                 return next(createError(404, "No courses found"));
             }
@@ -20,7 +21,7 @@ export const getAllCourses = async (req, res, next) => {
         res.status(200).json({
             success: true,
             message: "All courses",
-            courses
+            courses,
         });
     } catch (error) {
         return next(createError(500, error.message));
@@ -30,7 +31,7 @@ export const getAllCourses = async (req, res, next) => {
 export const createCourse = async (req, res, next) => {
     try {
         const { title, description, category, createdBy, price } = req.body;
-        if (!title || !description || !category || !createdBy || !price) {
+        if (!title || !description || !category || !createdBy) {
             return next(createError(400, "Please enter all input fields"));
         }
         const newCourse = new Course({
@@ -38,11 +39,11 @@ export const createCourse = async (req, res, next) => {
             description,
             category,
             createdBy,
-            price,
+            price: Number(price) || 0,
             thumbnail: {
                 public_id: title,
-                secure_url: "http"
-            }
+                secure_url: "http",
+            },
         });
 
         try {
@@ -52,14 +53,16 @@ export const createCourse = async (req, res, next) => {
             for (const key in error.errors) {
                 validationErrors.push(error.errors[key].message);
             }
-            return res.status(400).json({ success: false, message: validationErrors.join(', ') });
+            return res
+                .status(400)
+                .json({ success: false, message: validationErrors.join(", ") });
         }
 
         if (req.file) {
             try {
                 const result = await v2.uploader.upload(req.file.path, {
-                    resource_type: 'image',
-                    folder: 'lms'
+                    resource_type: "image",
+                    folder: "lms",
                 });
                 if (result) {
                     newCourse.thumbnail.public_id = result.public_id;
@@ -76,7 +79,7 @@ export const createCourse = async (req, res, next) => {
         res.status(201).json({
             success: true,
             message: "Course created successfully",
-            newCourse
+            newCourse,
         });
     } catch (error) {
         return next(createError(500, error.message));
@@ -98,10 +101,12 @@ export const updateCourse = async (req, res, next) => {
 
         if (req.file) {
             try {
-                await v2.uploader.destroy(course.thumbnail.public_id, { resource_type: 'image' });
+                await v2.uploader.destroy(course.thumbnail.public_id, {
+                    resource_type: "image",
+                });
                 const result = await v2.uploader.upload(req.file.path, {
-                    resource_type: 'image',
-                    folder: 'lms'
+                    resource_type: "image",
+                    folder: "lms",
                 });
                 if (result) {
                     course.thumbnail.public_id = result.public_id;
@@ -118,7 +123,7 @@ export const updateCourse = async (req, res, next) => {
         res.status(200).json({
             success: true,
             message: "Course updated successfully",
-            course
+            course,
         });
     } catch (error) {
         return next(createError(500, error.message));
@@ -132,47 +137,67 @@ export const deleteCourse = async (req, res, next) => {
         if (!course) {
             return next(createError(404, "No courses found"));
         }
-        await v2.uploader.destroy(course.thumbnail.public_id, { resource_type: 'image' });
+        await v2.uploader.destroy(course.thumbnail.public_id, {
+            resource_type: "image",
+        });
         myCache.del("courses");
         myCache.del(`lectures-${id}`);
         res.status(200).json({
             success: true,
-            message: "Course deleted successfully"
+            message: "Course deleted successfully",
         });
     } catch (error) {
         return next(createError(500, error.message));
     }
 };
 
+/**
+ * Return lectures with user-specific, expiring, watermarked playback URLs.
+ * NOTE: We DO NOT cache these responses because URLs are short-lived & personalized.
+ */
 export const getLectures = async (req, res, next) => {
     try {
         const { id } = req.params;
 
-        // 🔒 Access control: only admin OR subscribed user can view
+        // Access control — keep your subscription check if you still use it elsewhere.
         if (req.user.role !== "ADMIN") {
             const sub = req.user.subscriptions?.find(
-                (s) => s.courseId.toString() === id && s.status === "active"
+                (s) => String(s.courseId) === String(id) && s.status === "active"
             );
             if (!sub) {
                 return next(createError(403, "Please subscribe to access this"));
             }
         }
 
-        let lectures;
-        if (myCache.has(`lectures-${id}`)) {
-            lectures = JSON.parse(myCache.get(`lectures-${id}`));
-        } else {
-            const course = await Course.findById(id);
-            if (!course) {
-                return next(createError(404, "No course found"));
-            }
-            lectures = course.lectures;
-            myCache.set(`lectures-${id}`, JSON.stringify(lectures));
+        const course = await Course.findById(id);
+        if (!course) {
+            return next(createError(404, "No course found"));
         }
+
+        // Build per-user watermarked URLs and return them in place of secure_url
+        const identity =
+            (req.user?.name || "").toUpperCase() + " · " + (req.user?.email || "");
+        const ttlSeconds = 60 * 60; // 1 hour validity
+
+        const lectures = course.lectures.map((lec) => {
+            const obj = lec.toObject();
+            const publicId = obj?.lecture?.public_id;
+            if (publicId) {
+                const personalizedUrl = buildWatermarkedVideoUrl(
+                    publicId,
+                    identity,
+                    ttlSeconds
+                );
+                // Keep original structure so your frontend doesn't change:
+                obj.lecture.secure_url = personalizedUrl;
+            }
+            return obj;
+        });
+
         return res.status(200).json({
             success: true,
             message: "Lectures fetched successfully",
-            lectures
+            lectures,
         });
     } catch (error) {
         return next(createError(500, error.message));
@@ -197,15 +222,15 @@ export const addLecturesToCourse = async (req, res, next) => {
             description,
             lecture: {
                 public_id: title,
-                secure_url: "http"
-            }
+                secure_url: "http",
+            },
         };
 
         if (req.file) {
             try {
                 const result = await v2.uploader.upload(req.file.path, {
-                    resource_type: 'video',
-                    folder: 'lms'
+                    resource_type: "video",
+                    folder: "lms",
                 });
                 if (result) {
                     lectureData.lecture.public_id = result.public_id;
@@ -225,7 +250,7 @@ export const addLecturesToCourse = async (req, res, next) => {
         res.status(200).json({
             success: true,
             message: "Lecture added successfully",
-            lectures: course.lectures
+            lectures: course.lectures,
         });
     } catch (error) {
         return next(createError(500, error.message));
@@ -252,10 +277,12 @@ export const updateLectures = async (req, res, next) => {
 
         if (req.file) {
             try {
-                await v2.uploader.destroy(lectureToUpdate.lecture.public_id, { resource_type: 'video' });
+                await v2.uploader.destroy(lectureToUpdate.lecture.public_id, {
+                    resource_type: "video",
+                });
                 const result = await v2.uploader.upload(req.file.path, {
-                    resource_type: 'video',
-                    folder: 'lms'
+                    resource_type: "video",
+                    folder: "lms",
                 });
                 if (result) {
                     lectureToUpdate.lecture.public_id = result.public_id;
@@ -272,7 +299,7 @@ export const updateLectures = async (req, res, next) => {
         res.status(200).json({
             success: true,
             message: "Lecture updated successfully",
-            lectures: course.lectures
+            lectures: course.lectures,
         });
     } catch (error) {
         return next(createError(500, error.message));
@@ -294,9 +321,12 @@ export const deleteLectures = async (req, res, next) => {
             return next(createError(404, "No lecture found"));
         }
 
-        await v2.uploader.destroy(course.lectures[lectureIndex].lecture.public_id, {
-            resource_type: 'video'
-        });
+        await v2.uploader.destroy(
+            course.lectures[lectureIndex].lecture.public_id,
+            {
+                resource_type: "video",
+            }
+        );
 
         course.lectures.splice(lectureIndex, 1);
         course.numberOfLectures = course.lectures.length;
@@ -306,7 +336,7 @@ export const deleteLectures = async (req, res, next) => {
         res.status(200).json({
             success: true,
             message: "Lecture deleted successfully",
-            lectures: course.lectures
+            lectures: course.lectures,
         });
     } catch (error) {
         return next(createError(500, error.message));
